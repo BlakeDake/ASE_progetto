@@ -3,5 +3,6 @@
 
 
 void Start_Game(void) {
-	init_timer(0, 1);
+	init_timer(0, 0x00012345);
+	enable_timer(0);
 }

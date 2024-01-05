@@ -409,6 +409,16 @@
               <FileType>5</FileType>
               <FilePath>.\init.h</FilePath>
             </File>
+            <File>
+              <FileName>game_logic.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\game_logic.c</FilePath>
+            </File>
+            <File>
+              <FileName>game_logic.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\game_logic.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

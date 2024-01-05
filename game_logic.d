@@ -1,0 +1,12 @@
+.\game_logic.o: game_logic.c
+.\game_logic.o: game_logic.h
+.\game_logic.o: timer/timer.h
+.\game_logic.o: C:\Users\alefe\AppData\Local\Arm\Packs\Keil\LPC1700_DFP\2.7.1\Device\Include\LPC17xx.h
+.\game_logic.o: C:\Users\alefe\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm3.h
+.\game_logic.o: C:\Keil_v5\ARM\ARMCLANG5\Bin\..\include\stdint.h
+.\game_logic.o: C:\Users\alefe\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_version.h
+.\game_logic.o: C:\Users\alefe\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_compiler.h
+.\game_logic.o: C:\Users\alefe\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armcc.h
+.\game_logic.o: C:\Users\alefe\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\mpu_armv7.h
+.\game_logic.o: C:\Users\alefe\AppData\Local\Arm\Packs\Keil\LPC1700_DFP\2.7.1\Device\Include\system_LPC17xx.h
+.\game_logic.o: GLCD/GLCD.h

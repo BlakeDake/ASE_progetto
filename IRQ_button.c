@@ -4,7 +4,7 @@
 #include "game_logic.h"
 
 
-void EINT0_IRQHandler (void)	  
+void EINT0_IRQHandler (void)
 {
   LPC_SC->EXTINT &= (1 << 0);     /* clear pending interrupt         */
 	Start_Game();
