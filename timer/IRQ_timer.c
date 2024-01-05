@@ -39,16 +39,20 @@ void TIMER0_IRQHandler (void)
 					   GRID_BORDER_GAP+(NUM_SQUARE_PER_SIDE*SQUARE_SIDE_LENGTH)+(6*SQUARE_GAP)+UP_UNDER_RECTANGLE_GAP+2,
 						 "  ",
 						 Black,
-						 White);			// first I clear the screen
+						 White);			// first I clear the screen for the timer counter
 		GUI_Text(SIDE_RECTANGLE_GAP+RECTANGLE_HORIZONTAL_SIDE_LENGTH+SIDE_RECTANGLE_GAP+3,
 					   GRID_BORDER_GAP+(NUM_SQUARE_PER_SIDE*SQUARE_SIDE_LENGTH)+(6*SQUARE_GAP)+UP_UNDER_RECTANGLE_GAP+2,
 						 (uint8_t *)buffer,
 						 Black,
 						 White);			// then I print the timer
-		reset_timer(0);
+		reset_timer(1);
+		enable_timer(1);
 	} else {
-		disable_timer(0);
+		disable_timer(1);
 	}
+	LPC_TIM0->IR = 1;
+	
+	return;
 }
 
 

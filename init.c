@@ -87,6 +87,11 @@ void Draw_Start_Screen() {
 					 "P2 Wall",
 					 Black,
 					 White);
+	GUI_Text(SIDE_RECTANGLE_GAP+RECTANGLE_HORIZONTAL_SIDE_LENGTH+SIDE_RECTANGLE_GAP+3,
+					   GRID_BORDER_GAP+(NUM_SQUARE_PER_SIDE*SQUARE_SIDE_LENGTH)+(6*SQUARE_GAP)+UP_UNDER_RECTANGLE_GAP+2,
+						 "20",
+						 Black,
+						 White);
 	Draw_Starting_Token(1);
 	Draw_Starting_Token(2);
 	
