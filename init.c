@@ -1,14 +1,5 @@
 #include "init.h"
 
-#define GRID_BORDER_GAP 6
-#define SQUARE_SIDE_LENGTH 30
-#define SQUARE_GAP 3
-#define NUM_SQUARE_PER_SIDE 7
-#define SIDE_RECTANGLE_GAP 6
-#define UP_UNDER_RECTANGLE_GAP 10
-#define RECTANGLE_HORIZONTAL_SIDE_LENGTH 72
-#define RECTANGLE_VERTICAL_SIDE_LENGTH 60
-
 void Draw_Square(uint16_t x, uint16_t y) {
 	LCD_DrawLine(x, y, x, y+SQUARE_SIDE_LENGTH, Black);																					// left vertical side
 	LCD_DrawLine(x, y, x+SQUARE_SIDE_LENGTH, y, Black);																					// upper horizontal side
@@ -22,7 +13,6 @@ void Draw_Grid() {
 	int i, j;
 	int x = GRID_BORDER_GAP;
 	int y = GRID_BORDER_GAP;
-	
 	for(i = 0; i < NUM_SQUARE_PER_SIDE; i++) {
 		for(j = 0; j < NUM_SQUARE_PER_SIDE; j++) {
 			Draw_Square(x, y);

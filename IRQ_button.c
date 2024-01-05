@@ -2,11 +2,12 @@
 #include "lpc17xx.h"
 
 #include "game_logic.h"
-
+#include "timer/timer.h"
 
 void EINT0_IRQHandler (void)
 {
   LPC_SC->EXTINT &= (1 << 0);     /* clear pending interrupt         */
+	timer_value = 20;
 	Start_Game();
 }
 
