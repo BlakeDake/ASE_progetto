@@ -7,6 +7,17 @@ typedef struct position {
 	uint8_t y;
 } Pos;
 
+typedef struct position_barrier {
+	uint8_t x1,x2,y1,y2;
+} Position_barrier;
+
+typedef struct move {
+	uint8_t old_x;
+	uint8_t old_y;
+	uint8_t new_x;
+	uint8_t new_y;
+} Move;
+
 void paint_left_square(Pos position) {
 	paint_square(position.x-1, position.y, Yellow);
 }
@@ -59,6 +70,16 @@ void Show_Possible_Moves(uint8_t board[][BOARD_LENGTH], Pos position) {
 		paint_left_square(position);
 		paint_down_square(position);
 	}
+}
+
+void update_board_player_move(uint8_t board[][BOARD_LENGTH], Move move) {
+	board[2*move.old_x+1][2*move.old_y+1] = 0;
+	board[2*move.new_x+1][2*move.new_y+1] = 1;
+}
+
+void update_board_barrier(uint8_t board[][BOARD_LENGTH], Position_barrier barrier) {
+	board[2*barrier.x1+1][2*barrier.y1+1] = 1;
+	board[2*barrier.x2+1][2*barrier.y2+1] = 1;
 }
 
 
