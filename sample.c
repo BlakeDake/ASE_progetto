@@ -25,7 +25,7 @@
 #include "GLCD/GLCD.h" 
 #include "timer/timer.h"
 #include "init.h"
-//#include "button_EXINT/button.h"
+#include "button_EXINT/button.h"
 
 #define SIMULATOR 1
 
@@ -42,7 +42,7 @@ int main(void)
 
 	Draw_Start_Screen();
 	
-	//BUTTON_init();
+	BUTTON_init();
 	
 	//init_timer(0, 0x1312D0 ); 						/* 50ms * 25MHz = 1.25*10^6 = 0x1312D0 */
 	//init_timer(0, 0x6108 ); 						  /* 1ms * 25MHz = 25*10^3 = 0x6108 */
