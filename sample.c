@@ -20,18 +20,12 @@
 **
 *********************************************************************************************************/
 
-/*
-	6 pixel per lato come bordo											-> 12 pixel
-	30 pixel per lato del quadrato della scacchiera	-> 210 pixel
-	3 pixel come interstizio												-> 18 pixel
-																									=  240 pixel
-*/
-
 /* Includes ------------------------------------------------------------------*/
 #include "LPC17xx.h"
 #include "GLCD/GLCD.h" 
-#include "TouchPanel/TouchPanel.h"
 #include "timer/timer.h"
+#include "init.h"
+//#include "button_EXINT/button.h"
 
 #define SIMULATOR 1
 
@@ -39,25 +33,21 @@
 extern uint8_t ScaleFlag; // <- ScaleFlag needs to visible in order for the emulator to find the symbol (can be placed also inside system_LPC17xx.h but since it is RO, it needs more work)
 #endif
 
-void Draw_Grid();
 
 int main(void)
 {
   SystemInit();  												/* System Initialization (i.e., PLL)  */
   LCD_Initialization();
-	TP_Init();
-	//TouchPanel_Calibrate();
-	
 	LCD_Clear(White);
+
+	Draw_Start_Screen();
 	
-	Draw_Grid();
-	
-	//GUI_Text(0, 280, (uint8_t *) " touch here : 1 sec to clear  ", Blue, White);
+	//BUTTON_init();
 	
 	//init_timer(0, 0x1312D0 ); 						/* 50ms * 25MHz = 1.25*10^6 = 0x1312D0 */
 	//init_timer(0, 0x6108 ); 						  /* 1ms * 25MHz = 25*10^3 = 0x6108 */
 	//init_timer(0, 0x4E2 ); 						    /* 500us * 25MHz = 1.25*10^3 = 0x4E2 */
-	init_timer(0, 0xC8 ); 						    /* 8us * 25MHz = 200 ~= 0xC8 */
+	init_timer(0, 0xC8 ); 						    	/* 8us * 25MHz = 200 ~= 0xC8 */
 	
 	enable_timer(0);
 	
@@ -68,10 +58,6 @@ int main(void)
   {
 		__ASM("wfi");
   }
-}
-
-void Draw_Grid() {
-	LCD_DrawLine(6, 6, 36, 6, Black);
 }
 
 
