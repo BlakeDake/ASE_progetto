@@ -1,12 +1,4 @@
-#include "GLCD/GLCD.h" 
-
-#define GRID_BORDER_GAP 6
-#define SQUARE_SIDE_LENGTH 30
-#define SQUARE_GAP 3
-#define NUM_SQUARE_PER_SIDE 7
-#define SIDE_RECTANGLE_GAP 6
-#define UP_UNDER_RECTANGLE_GAP 10
-#define RECTANGLE_HORIZONTAL_SIDE_LENGTH 72
-#define RECTANGLE_VERTICAL_SIDE_LENGTH 60
+#include "GLCD/GLCD.h"
+#include "constants.h"
 
 void Draw_Start_Screen(void);

@@ -9,3 +9,6 @@
 .\game_logic.o: C:\Users\alefe\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armcc.h
 .\game_logic.o: C:\Users\alefe\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\mpu_armv7.h
 .\game_logic.o: C:\Users\alefe\AppData\Local\Arm\Packs\Keil\LPC1700_DFP\2.7.1\Device\Include\system_LPC17xx.h
+.\game_logic.o: coloring.h
+.\game_logic.o: constants.h
+.\game_logic.o: GLCD/GLCD.h

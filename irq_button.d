@@ -10,3 +10,6 @@
 .\irq_button.o: C:\Users\alefe\AppData\Local\Arm\Packs\Keil\LPC1700_DFP\2.7.1\Device\Include\system_LPC17xx.h
 .\irq_button.o: game_logic.h
 .\irq_button.o: timer/timer.h
+.\irq_button.o: coloring.h
+.\irq_button.o: constants.h
+.\irq_button.o: GLCD/GLCD.h

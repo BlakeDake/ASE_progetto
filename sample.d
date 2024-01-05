@@ -10,4 +10,5 @@
 .\sample.o: GLCD/GLCD.h
 .\sample.o: timer/timer.h
 .\sample.o: init.h
+.\sample.o: constants.h
 .\sample.o: button_EXINT/button.h

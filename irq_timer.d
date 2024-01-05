@@ -13,3 +13,4 @@
 .\irq_timer.o: timer\../TouchPanel/TouchPanel.h
 .\irq_timer.o: C:\Keil_v5\ARM\ARMCLANG5\Bin\..\include\stdio.h
 .\irq_timer.o: timer\../init.h
+.\irq_timer.o: timer\../constants.h
