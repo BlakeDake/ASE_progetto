@@ -23,25 +23,57 @@ typedef struct move {
 
 void paint_left_square(uint8_t board[][BOARD_LENGTH], Pos_square position) {
 	if(board[2*position.row][2*position.column-1] == 0) {					// check barrier
-		paint_square(position.row, position.column-1, Yellow);
+		if(board[2*position.row][2*position.column-2] == 0) {				// check jump over opponent
+			paint_square(position.row, position.column-1, Yellow);		// show if no barrier and no opponent
+		} else {																										// opponent is there
+			if(position.column != 1) {																// the opponent is on the border, so you are in the second column
+				if(board[2*position.row][2*position.column-3] == 0) {		// check barrier behind opponent
+					paint_square(position.row, position.column-2, Yellow);
+				}
+			}
+		}
 	}
 }
 
 void paint_right_square(uint8_t board[][BOARD_LENGTH], Pos_square position) {
 	if(board[2*position.row][2*position.column+1] == 0) {					// check barrier
-		paint_square(position.row, position.column+1, Yellow);
+		if(board[2*position.row][2*position.column+2] == 0) {
+			paint_square(position.row, position.column+1, Yellow);
+		} else {
+			if(position.column != NUM_SQUARE_PER_SIDE-1) {
+				if(board[2*position.row][2*position.column+3] == 0) {
+					paint_square(position.row, position.column+2, Yellow);
+				}
+			}
+		}
 	}
 }
 
 void paint_up_square(uint8_t board[][BOARD_LENGTH], Pos_square position) {
-	if(board[2*position.row-1][2*position.column] == 0) {					// check barrier
-		paint_square(position.row-1, position.column, Yellow);
+	if(board[2*position.row-1][2*position.column] == 0) {
+		if(board[2*position.row-2][2*position.column] == 0) {
+			paint_square(position.row-1, position.column, Yellow);
+		} else {
+			if(position.row != 1) {
+				if(board[2*position.row-3][2*position.column] == 0) {
+					paint_square(position.row-2, position.column, Yellow);
+				}
+			}
+		}
 	}
 }
 
 void paint_down_square(uint8_t board[][BOARD_LENGTH], Pos_square position) {
-	if(board[2*position.row+1][2*position.column] == 0) {					// check barrier
-		paint_square(position.row+1, position.column, Yellow);
+	if(board[2*position.row+1][2*position.column] == 0) {
+		if(board[2*position.row+2][2*position.column] == 0) {
+			paint_square(position.row+1, position.column, Yellow);
+		} else {
+			if(position.row != NUM_SQUARE_PER_SIDE-1) {
+				if(board[2*position.row+3][2*position.column] == 0) {
+					paint_square(position.row+2, position.column, Yellow);
+				}
+			}
+		}
 	}
 }
 
