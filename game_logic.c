@@ -5,13 +5,13 @@
 typedef struct position {
 	uint8_t row;
 	uint8_t column;
-} Pos;
+} Pos_square;
 
 typedef struct position_barrier {
 	uint8_t row;
 	uint8_t column;
 	uint8_t direction;		// 0 = horizontal, 1 = vertical
-} Position_barrier;
+} Pos_barrier;
 
 typedef struct move {
 	uint8_t old_row;
@@ -20,31 +20,32 @@ typedef struct move {
 	uint8_t new_column;
 } Move;
 
-void paint_left_square(uint8_t board[][BOARD_LENGTH], Pos position) {
+
+void paint_left_square(uint8_t board[][BOARD_LENGTH], Pos_square position) {
 	if(board[2*position.row][2*position.column-1] == 0) {					// check barrier
 		paint_square(position.row, position.column-1, Yellow);
 	}
 }
 
-void paint_right_square(uint8_t board[][BOARD_LENGTH], Pos position) {
+void paint_right_square(uint8_t board[][BOARD_LENGTH], Pos_square position) {
 	if(board[2*position.row][2*position.column+1] == 0) {					// check barrier
 		paint_square(position.row, position.column+1, Yellow);
 	}
 }
 
-void paint_up_square(uint8_t board[][BOARD_LENGTH], Pos position) {
+void paint_up_square(uint8_t board[][BOARD_LENGTH], Pos_square position) {
 	if(board[2*position.row-1][2*position.column] == 0) {					// check barrier
 		paint_square(position.row-1, position.column, Yellow);
 	}
 }
 
-void paint_down_square(uint8_t board[][BOARD_LENGTH], Pos position) {
+void paint_down_square(uint8_t board[][BOARD_LENGTH], Pos_square position) {
 	if(board[2*position.row+1][2*position.column] == 0) {					// check barrier
 		paint_square(position.row+1, position.column, Yellow);
 	}
 }
 
-void Show_Possible_Moves(uint8_t board[][BOARD_LENGTH], Pos position) {
+void Show_Possible_Moves(uint8_t board[][BOARD_LENGTH], Pos_square position) {
 	if(position.row == 0 && position.column == 0) {		// top left corner
 		paint_right_square(board, position);
 		paint_down_square(board, position);
@@ -87,15 +88,17 @@ void update_board_player_move(uint8_t board[][BOARD_LENGTH], Move move) {
 	board[2*move.new_row][2*move.new_column] = 1;
 }
 
-void update_board_barrier(uint8_t board[][BOARD_LENGTH], Position_barrier barrier) {
+void update_board_barrier(uint8_t board[][BOARD_LENGTH], Pos_barrier barrier) {
 	switch(barrier.direction) {
 		case 0:			// horizontal
 			board[2*barrier.row+1][2*barrier.column] = 1;
 			board[2*barrier.row+1][2*barrier.column+2] = 1;
+			paint_barrier(barrier.row, barrier.column, barrier.direction);
 			break;
 		case 1:			// vertical
 			board[2*barrier.row][2*barrier.column+1] = 1;
 			board[2*barrier.row+2][2*barrier.column+1] = 1;
+			paint_barrier(barrier.row, barrier.column, barrier.direction);
 			break;
 		default:
 			break;
@@ -106,11 +109,11 @@ void update_board_barrier(uint8_t board[][BOARD_LENGTH], Position_barrier barrie
 void Start_Game(void) {
 	uint8_t player_turn = 1;
 	uint8_t board[BOARD_LENGTH][BOARD_LENGTH] = {0};
-	Pos player1 = {0,3};
-	Pos player2 = {6,3};
+	Pos_square player1 = {0,3};
+	Pos_square player2 = {6,3};
 	Move init_p1 = {0,3,0,3};
 	Move init_p2 = {6,3,6,3};
-	Position_barrier bar1 = {0,2,1};
+	Pos_barrier bar1 = {0,2,0};
 	
 	init_timer(0, 0x00B71B00);
 	enable_timer(0);
