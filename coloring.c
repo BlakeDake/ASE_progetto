@@ -18,7 +18,7 @@ void paint_square(uint8_t row, uint8_t column, uint16_t color) {
 	}
 }
 
-void paint_barrier(uint8_t row, uint8_t column, uint8_t direction) {
+void paint_barrier(uint8_t row, uint8_t column, uint8_t direction, uint16_t color) {
 	uint16_t length = SQUARE_SIDE_LENGTH + SQUARE_GAP + SQUARE_SIDE_LENGTH;
 	uint16_t pixel_x_start = 0;
 	uint16_t pixel_y_start = 0;
@@ -26,16 +26,14 @@ void paint_barrier(uint8_t row, uint8_t column, uint8_t direction) {
 		case 0:		// horizontal
 			pixel_x_start = GRID_BORDER_GAP + (SQUARE_SIDE_LENGTH*column) + (SQUARE_GAP*column);
 			pixel_y_start = GRID_BORDER_GAP + (SQUARE_SIDE_LENGTH*(row+1)) + (SQUARE_GAP*row);
-			LCD_DrawLine(pixel_x_start, pixel_y_start, pixel_x_start+length, pixel_y_start, Magenta);
-			LCD_DrawLine(pixel_x_start, pixel_y_start+1, pixel_x_start+length, pixel_y_start+1, Magenta);
-			LCD_DrawLine(pixel_x_start, pixel_y_start+2, pixel_x_start+length, pixel_y_start+2, Magenta);
+			LCD_DrawLine(pixel_x_start, pixel_y_start+1, pixel_x_start+length, pixel_y_start+1, color);
+			LCD_DrawLine(pixel_x_start, pixel_y_start+2, pixel_x_start+length, pixel_y_start+2, color);
 			break;
 		case 1:		// vertical
 			pixel_x_start = GRID_BORDER_GAP + (SQUARE_SIDE_LENGTH*(column+1)) + (SQUARE_GAP*column);
 			pixel_y_start = GRID_BORDER_GAP + (SQUARE_SIDE_LENGTH*row) + (SQUARE_GAP*row);
-			LCD_DrawLine(pixel_x_start, pixel_y_start, pixel_x_start, pixel_y_start+length, Magenta);
-			LCD_DrawLine(pixel_x_start+1, pixel_y_start, pixel_x_start+1, pixel_y_start+length, Magenta);
-			LCD_DrawLine(pixel_x_start+2, pixel_y_start, pixel_x_start+2, pixel_y_start+length, Magenta);
+			LCD_DrawLine(pixel_x_start+1, pixel_y_start, pixel_x_start+1, pixel_y_start+length, color);
+			LCD_DrawLine(pixel_x_start+2, pixel_y_start, pixel_x_start+2, pixel_y_start+length, color);
 			break;
 		default:
 			break;

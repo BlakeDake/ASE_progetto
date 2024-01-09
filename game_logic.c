@@ -125,12 +125,12 @@ void update_board_barrier(uint8_t board[][BOARD_LENGTH], Pos_barrier barrier) {
 		case 0:			// horizontal
 			board[2*barrier.row+1][2*barrier.column] = 1;
 			board[2*barrier.row+1][2*barrier.column+2] = 1;
-			paint_barrier(barrier.row, barrier.column, barrier.direction);
+			paint_barrier(barrier.row, barrier.column, barrier.direction, Magenta);
 			break;
 		case 1:			// vertical
 			board[2*barrier.row][2*barrier.column+1] = 1;
 			board[2*barrier.row+2][2*barrier.column+1] = 1;
-			paint_barrier(barrier.row, barrier.column, barrier.direction);
+			paint_barrier(barrier.row, barrier.column, barrier.direction, Magenta);
 			break;
 		default:
 			break;
@@ -145,7 +145,7 @@ void Start_Game(void) {
 	Pos_square player2 = {6,3};
 	Move init_p1 = {0,3,0,3};
 	Move init_p2 = {6,3,6,3};
-	Pos_barrier bar1 = {0,2,0};
+	Pos_barrier bar1 = {1,2,1};
 	
 	init_timer(0, 0x00B71B00);
 	enable_timer(0);

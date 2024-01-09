@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\sample.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\sample.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Mon Jan 08 14:33:08 2024
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Tue Jan 09 16:57:20 2024
 <BR><P>
 <H3>Maximum Stack Usage =        368 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -568,8 +568,8 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Start_Game
 </UL>
 
-<P><STRONG><a name="[5f]"></a>update_board_barrier</STRONG> (Thumb, 170 bytes, Stack size 16 bytes, game_logic.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 136<LI>Call Chain = update_board_barrier &rArr; paint_barrier &rArr; LCD_DrawLine &rArr; LCD_SetPoint &rArr; LCD_SetCursor
+<P><STRONG><a name="[5f]"></a>update_board_barrier</STRONG> (Thumb, 178 bytes, Stack size 16 bytes, game_logic.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 144<LI>Call Chain = update_board_barrier &rArr; paint_barrier &rArr; LCD_DrawLine &rArr; LCD_SetPoint &rArr; LCD_SetCursor
 </UL>
 <BR>[Calls]<UL><LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;paint_barrier
 </UL>
@@ -600,8 +600,8 @@ Global Symbols
 <LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;paint_left_square
 </UL>
 
-<P><STRONG><a name="[60]"></a>paint_barrier</STRONG> (Thumb, 232 bytes, Stack size 32 bytes, coloring.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 120<LI>Call Chain = paint_barrier &rArr; LCD_DrawLine &rArr; LCD_SetPoint &rArr; LCD_SetCursor
+<P><STRONG><a name="[60]"></a>paint_barrier</STRONG> (Thumb, 194 bytes, Stack size 40 bytes, coloring.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 128<LI>Call Chain = paint_barrier &rArr; LCD_DrawLine &rArr; LCD_SetPoint &rArr; LCD_SetCursor
 </UL>
 <BR>[Calls]<UL><LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_DrawLine
 </UL>
