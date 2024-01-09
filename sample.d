@@ -12,3 +12,5 @@
 .\sample.o: init.h
 .\sample.o: constants.h
 .\sample.o: button_EXINT/button.h
+.\sample.o: RIT.h
+.\sample.o: joystick.h

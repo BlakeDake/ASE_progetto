@@ -26,6 +26,8 @@
 #include "timer/timer.h"
 #include "init.h"
 #include "button_EXINT/button.h"
+#include "RIT.h"
+#include "joystick.h"
 
 #define SIMULATOR 1
 
@@ -42,7 +44,10 @@ int main(void)
 
 	Draw_Start_Screen();
 	
-	BUTTON_init();
+	BUTTON_init();												/* BUTTON Initialization              */
+	joystick_init();											/* Joystick Initialization            */
+	init_RIT(0x004C4B40);									/* RIT Initialization 50 msec       	*/
+	enable_RIT();													/* RIT enabled												*/
 	
 	LPC_SC->PCON |= 0x1;									/* power-down	mode										*/
 	LPC_SC->PCON &= ~(0x2);						
