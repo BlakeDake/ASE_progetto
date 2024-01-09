@@ -10,9 +10,6 @@
 #include <string.h>
 #include "lpc17xx.h"
 #include "timer.h"
-#include "../GLCD/GLCD.h" 
-#include "../TouchPanel/TouchPanel.h"
-
 #include <stdio.h>
 #include "../GLCD/GLCD.h"
 #include "../init.h"

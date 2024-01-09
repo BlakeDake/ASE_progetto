@@ -21,97 +21,97 @@ typedef struct move {
 } Move;
 
 
-void paint_left_square(uint8_t board[][BOARD_LENGTH], Pos_square position) {
+void paint_left_square(uint8_t board[][BOARD_LENGTH], Pos_square position, uint16_t color) {
 	if(board[2*position.row][2*position.column-1] == 0) {					// check barrier
 		if(board[2*position.row][2*position.column-2] == 0) {				// check jump over opponent
-			paint_square(position.row, position.column-1, Yellow);		// show if no barrier and no opponent
+			paint_square(position.row, position.column-1, color);		// show if no barrier and no opponent
 		} else {																										// opponent is there
 			if(position.column != 1) {																// the opponent is on the border, so you are in the second column
 				if(board[2*position.row][2*position.column-3] == 0) {		// check barrier behind opponent
-					paint_square(position.row, position.column-2, Yellow);
+					paint_square(position.row, position.column-2, color);
 				}
 			}
 		}
 	}
 }
 
-void paint_right_square(uint8_t board[][BOARD_LENGTH], Pos_square position) {
+void paint_right_square(uint8_t board[][BOARD_LENGTH], Pos_square position, uint16_t color) {
 	if(board[2*position.row][2*position.column+1] == 0) {					// check barrier
 		if(board[2*position.row][2*position.column+2] == 0) {
-			paint_square(position.row, position.column+1, Yellow);
+			paint_square(position.row, position.column+1, color);
 		} else {
 			if(position.column != NUM_SQUARE_PER_SIDE-1) {
 				if(board[2*position.row][2*position.column+3] == 0) {
-					paint_square(position.row, position.column+2, Yellow);
+					paint_square(position.row, position.column+2, color);
 				}
 			}
 		}
 	}
 }
 
-void paint_up_square(uint8_t board[][BOARD_LENGTH], Pos_square position) {
+void paint_up_square(uint8_t board[][BOARD_LENGTH], Pos_square position, uint16_t color) {
 	if(board[2*position.row-1][2*position.column] == 0) {
 		if(board[2*position.row-2][2*position.column] == 0) {
-			paint_square(position.row-1, position.column, Yellow);
+			paint_square(position.row-1, position.column, color);
 		} else {
 			if(position.row != 1) {
 				if(board[2*position.row-3][2*position.column] == 0) {
-					paint_square(position.row-2, position.column, Yellow);
+					paint_square(position.row-2, position.column, color);
 				}
 			}
 		}
 	}
 }
 
-void paint_down_square(uint8_t board[][BOARD_LENGTH], Pos_square position) {
+void paint_down_square(uint8_t board[][BOARD_LENGTH], Pos_square position, uint16_t color) {
 	if(board[2*position.row+1][2*position.column] == 0) {
 		if(board[2*position.row+2][2*position.column] == 0) {
-			paint_square(position.row+1, position.column, Yellow);
+			paint_square(position.row+1, position.column, color);
 		} else {
 			if(position.row != NUM_SQUARE_PER_SIDE-1) {
 				if(board[2*position.row+3][2*position.column] == 0) {
-					paint_square(position.row+2, position.column, Yellow);
+					paint_square(position.row+2, position.column, color);
 				}
 			}
 		}
 	}
 }
 
-void Show_Possible_Moves(uint8_t board[][BOARD_LENGTH], Pos_square position) {
+void Show_Possible_Moves(uint8_t board[][BOARD_LENGTH], Pos_square position, uint16_t color) {
 	if(position.row == 0 && position.column == 0) {		// top left corner
-		paint_right_square(board, position);
-		paint_down_square(board, position);
+		paint_right_square(board, position, color);
+		paint_down_square(board, position, color);
 	} else if(position.row == 0 && position.column== NUM_SQUARE_PER_SIDE-1) {		// top right corner
-		paint_left_square(board, position);
-		paint_down_square(board, position);
+		paint_left_square(board, position, color);
+		paint_down_square(board, position, color);
 	} else if(position.row == NUM_SQUARE_PER_SIDE-1 && position.column == 0) {		// bottom left corner
-		paint_up_square(board, position);
-		paint_right_square(board, position);
+		paint_up_square(board, position, color);
+		paint_right_square(board, position, color);
 	} else if(position.row == NUM_SQUARE_PER_SIDE-1 && position.column == NUM_SQUARE_PER_SIDE-1) {		// bottom right
-		paint_left_square(board, position);
-		paint_up_square(board, position);
+		paint_left_square(board, position, color);
+		paint_up_square(board, position, color);
 	} else if(position.column == 0) {		// left border 
-		paint_up_square(board, position);
-		paint_down_square(board, position);
-		paint_right_square(board, position);
+		paint_up_square(board, position, color);
+		paint_down_square(board, position, color);
+		paint_right_square(board, position, color);
 	} else if(position.column == NUM_SQUARE_PER_SIDE-1) {	// right border
-		paint_left_square(board, position);
-		paint_up_square(board, position);
-		paint_down_square(board, position);
+		paint_left_square(board, position, color);
+		paint_up_square(board, position, color);
+		paint_down_square(board, position, color);
 	} else if(position.row == 0) {	// top border
-		paint_left_square(board, position);
-		paint_right_square(board, position);
-		paint_down_square(board, position);
+		paint_left_square(board, position, color);
+		paint_right_square(board, position, color);
+		paint_down_square(board, position, color);
 	} else if(position.row == NUM_SQUARE_PER_SIDE-1) {	// bottom border
-		paint_up_square(board, position);
-		paint_left_square(board, position);
-		paint_right_square(board, position);
+		paint_up_square(board, position, color);
+		paint_left_square(board, position, color);
+		paint_right_square(board, position, color);
 	} else if((position.row != 0 && position.column != 0) || 
 						(position.row != NUM_SQUARE_PER_SIDE-1 && position.column != NUM_SQUARE_PER_SIDE-1)) {	// not on the border
-		paint_left_square(board, position);
-		paint_right_square(board, position);
-		paint_up_square(board, position);
-		paint_down_square(board, position);
+		paint_left_square(board, position, color);
+		paint_right_square(board, position, color);
+		paint_up_square(board, position, color);
+		paint_down_square(board, position, color);
 	}
 }
 
@@ -139,7 +139,6 @@ void update_board_barrier(uint8_t board[][BOARD_LENGTH], Pos_barrier barrier) {
 
 
 void Start_Game(void) {
-	uint8_t player_turn = 1;
 	uint8_t board[BOARD_LENGTH][BOARD_LENGTH] = {0};
 	Pos_square player1 = {0,3};
 	Pos_square player2 = {6,3};
@@ -154,5 +153,6 @@ void Start_Game(void) {
 	update_board_player_move(board, init_p2);
 	update_board_barrier(board, bar1);
 	
-	Show_Possible_Moves(board, player1);
+	Show_Possible_Moves(board, player1, Yellow);
+	Show_Possible_Moves(board, player1, White);
 }
