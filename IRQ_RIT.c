@@ -10,8 +10,8 @@
 #include "lpc17xx.h"
 #include "RIT.h"
 #include "game_logic.h"
+#include "button.h"
 
-volatile int mossa = 0;
 
 /******************************************************************************
 ** Function name:		RIT_IRQHandler
@@ -53,67 +53,69 @@ void RIT_IRQHandler(void) {
 		NVIC_EnableIRQ(EINT1_IRQn);							 /* disable Button interrupts			*/
 		LPC_PINCON->PINSEL4    |= (1 << 22);     /* External interrupt 0 pin selection */
 	}
-	
-	if((LPC_GPIO1->FIOPIN & (1<<29)) == 0) {		// 29 = UP
-		js_up++;
-		switch(js_up) {
-			case 1:
-				break;
-			default:
-				break;
+	if(int0 == Pressed) {
+		if((LPC_GPIO1->FIOPIN & (1<<29)) == 0) {		// 29 = UP
+			js_up++;
+			switch(js_up) {
+				case 1:
+					enum direction 
+					show_decision_square();
+					break;
+				default:
+					break;
+			}
+		} else {
+				js_up = 0;
 		}
-	} else {
-			js_up = 0;
-	}
-	
-	if((LPC_GPIO1->FIOPIN & (1<<28)) == 0) {		// 28 = RIGHT
-		js_right++;
-		switch(js_right) {
-			case 1:
-				break;
-			default:
-				break;
+		
+		if((LPC_GPIO1->FIOPIN & (1<<28)) == 0) {		// 28 = RIGHT
+			js_right++;
+			switch(js_right) {
+				case 1:
+					break;
+				default:
+					break;
+			}
+		} else {
+				js_right=0;
 		}
-	} else {
-			js_right=0;
-	}
-	
-	if((LPC_GPIO1->FIOPIN & (1<<27)) == 0) {		// 27 = LEFT
-		js_left++;
-		switch(js_left){
-			case 1:
-				break;
-			default:
-				break;
+		
+		if((LPC_GPIO1->FIOPIN & (1<<27)) == 0) {		// 27 = LEFT
+			js_left++;
+			switch(js_left){
+				case 1:
+					break;
+				default:
+					break;
+			}
+		}	else {
+				js_left=0;
 		}
-	}	else {
-			js_left=0;
-	}
-	
-	if((LPC_GPIO1->FIOPIN & (1<<26)) == 0) {			// 26 = DOWN
-		js_down++;
-		switch(js_down) {
-			case 1:
-				break;
-			default:
-				break;
+		
+		if((LPC_GPIO1->FIOPIN & (1<<26)) == 0) {			// 26 = DOWN
+			js_down++;
+			switch(js_down) {
+				case 1:
+					break;
+				default:
+					break;
+			}
+		}	else {
+				js_down=0;
 		}
-	}	else {
-			js_down=0;
-	}
-	
-	if((LPC_GPIO1->FIOPIN & (1<<25)) == 0) {		// 25 = SELECT (joystick pressed)
-		select++;
-		switch(select) {
-			case 1:
-				break;
-			default:
-				break;
+		
+		if((LPC_GPIO1->FIOPIN & (1<<25)) == 0) {		// 25 = SELECT (joystick pressed)
+			select++;
+			switch(select) {
+				case 1:
+					break;
+				default:
+					break;
+			}
+		} else {
+				select = 0;
 		}
-	} else {
-			select = 0;
 	}
-
   //LPC_RIT->RICTRL |= 0x1;	/* clear interrupt flag */
 	
   return;

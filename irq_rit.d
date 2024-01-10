@@ -13,3 +13,4 @@
 .\irq_rit.o: coloring.h
 .\irq_rit.o: constants.h
 .\irq_rit.o: GLCD/GLCD.h
+.\irq_rit.o: button.h
