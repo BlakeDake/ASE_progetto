@@ -58,8 +58,7 @@ void RIT_IRQHandler(void) {
 			js_up++;
 			switch(js_up) {
 				case 1:
-					enum direction 
-					show_decision_square();
+					show_decision_square(Up);
 					break;
 				default:
 					break;
@@ -72,6 +71,7 @@ void RIT_IRQHandler(void) {
 			js_right++;
 			switch(js_right) {
 				case 1:
+					show_decision_square(Right);
 					break;
 				default:
 					break;
@@ -84,6 +84,7 @@ void RIT_IRQHandler(void) {
 			js_left++;
 			switch(js_left){
 				case 1:
+					show_decision_square(Left);
 					break;
 				default:
 					break;
@@ -96,6 +97,7 @@ void RIT_IRQHandler(void) {
 			js_down++;
 			switch(js_down) {
 				case 1:
+					show_decision_square(Down);
 					break;
 				default:
 					break;
@@ -108,6 +110,7 @@ void RIT_IRQHandler(void) {
 			select++;
 			switch(select) {
 				case 1:
+					show_decision_square(Select);
 					break;
 				default:
 					break;

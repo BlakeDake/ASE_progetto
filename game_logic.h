@@ -1,12 +1,13 @@
 #include "timer/timer.h"
 #include "coloring.h"
 
-enum direction {
+typedef enum Direction {
 	Up,
 	Down,
 	Right,
-	Left
-};
+	Left,
+	Select
+} Direction;
 
 void Start_Game(void);
-void show_decision_square(enum direction dir);
+void show_decision_square(Direction dir);
