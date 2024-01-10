@@ -111,6 +111,10 @@ void RIT_IRQHandler(void) {
 			switch(select) {
 				case 1:
 					show_decision_square(Select);
+					if(swap) {
+						swap = 0;
+						new_turn();
+					}
 					break;
 				default:
 					break;
