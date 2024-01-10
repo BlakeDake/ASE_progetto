@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\sample.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\sample.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Wed Jan 10 11:38:05 2024
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Wed Jan 10 12:55:18 2024
 <BR><P>
 <H3>Maximum Stack Usage =        208 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -514,7 +514,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[3f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[5b]"></a>paint_left_square</STRONG> (Thumb, 150 bytes, Stack size 24 bytes, game_logic.o(.text))
+<P><STRONG><a name="[5b]"></a>paint_left_square</STRONG> (Thumb, 166 bytes, Stack size 24 bytes, game_logic.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 152<LI>Call Chain = paint_left_square &rArr; paint_square &rArr; LCD_DrawLine &rArr; LCD_SetPoint &rArr; LCD_SetCursor
 </UL>
 <BR>[Calls]<UL><LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;paint_square
@@ -523,7 +523,7 @@ Global Symbols
 <LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Show_Possible_Moves
 </UL>
 
-<P><STRONG><a name="[5d]"></a>paint_right_square</STRONG> (Thumb, 150 bytes, Stack size 24 bytes, game_logic.o(.text))
+<P><STRONG><a name="[5d]"></a>paint_right_square</STRONG> (Thumb, 166 bytes, Stack size 24 bytes, game_logic.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 152<LI>Call Chain = paint_right_square &rArr; paint_square &rArr; LCD_DrawLine &rArr; LCD_SetPoint &rArr; LCD_SetCursor
 </UL>
 <BR>[Calls]<UL><LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;paint_square
@@ -532,7 +532,7 @@ Global Symbols
 <LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Show_Possible_Moves
 </UL>
 
-<P><STRONG><a name="[5e]"></a>paint_up_square</STRONG> (Thumb, 150 bytes, Stack size 24 bytes, game_logic.o(.text))
+<P><STRONG><a name="[5e]"></a>paint_up_square</STRONG> (Thumb, 166 bytes, Stack size 24 bytes, game_logic.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 152<LI>Call Chain = paint_up_square &rArr; paint_square &rArr; LCD_DrawLine &rArr; LCD_SetPoint &rArr; LCD_SetCursor
 </UL>
 <BR>[Calls]<UL><LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;paint_square
@@ -541,7 +541,7 @@ Global Symbols
 <LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Show_Possible_Moves
 </UL>
 
-<P><STRONG><a name="[5f]"></a>paint_down_square</STRONG> (Thumb, 150 bytes, Stack size 24 bytes, game_logic.o(.text))
+<P><STRONG><a name="[5f]"></a>paint_down_square</STRONG> (Thumb, 166 bytes, Stack size 24 bytes, game_logic.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 152<LI>Call Chain = paint_down_square &rArr; paint_square &rArr; LCD_DrawLine &rArr; LCD_SetPoint &rArr; LCD_SetCursor
 </UL>
 <BR>[Calls]<UL><LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;paint_square
@@ -562,13 +562,13 @@ Global Symbols
 <LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;show_decision_square
 </UL>
 
-<P><STRONG><a name="[65]"></a>update_board_player_move</STRONG> (Thumb, 56 bytes, Stack size 12 bytes, game_logic.o(.text))
+<P><STRONG><a name="[65]"></a>update_board_player_move</STRONG> (Thumb, 60 bytes, Stack size 12 bytes, game_logic.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = update_board_player_move
 </UL>
 <BR>[Called By]<UL><LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Start_Game
 </UL>
 
-<P><STRONG><a name="[61]"></a>update_board_barrier</STRONG> (Thumb, 184 bytes, Stack size 16 bytes, game_logic.o(.text))
+<P><STRONG><a name="[61]"></a>update_board_barrier</STRONG> (Thumb, 178 bytes, Stack size 16 bytes, game_logic.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 144<LI>Call Chain = update_board_barrier &rArr; paint_barrier &rArr; LCD_DrawLine &rArr; LCD_SetPoint &rArr; LCD_SetCursor
 </UL>
 <BR>[Calls]<UL><LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;paint_barrier
@@ -576,10 +576,11 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Start_Game
 </UL>
 
-<P><STRONG><a name="[63]"></a>show_decision_square</STRONG> (Thumb, 422 bytes, Stack size 16 bytes, game_logic.o(.text))
+<P><STRONG><a name="[63]"></a>show_decision_square</STRONG> (Thumb, 800 bytes, Stack size 16 bytes, game_logic.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 192<LI>Call Chain = show_decision_square &rArr; Show_Possible_Moves &rArr; paint_down_square &rArr; paint_square &rArr; LCD_DrawLine &rArr; LCD_SetPoint &rArr; LCD_SetCursor
 </UL>
-<BR>[Calls]<UL><LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Show_Possible_Moves
+<BR>[Calls]<UL><LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;paint_square
+<LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Show_Possible_Moves
 <LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;paint_down_square
 <LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;paint_up_square
 <LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;paint_right_square
@@ -605,7 +606,8 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_DrawLine
 </UL>
-<BR>[Called By]<UL><LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;paint_down_square
+<BR>[Called By]<UL><LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;show_decision_square
+<LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;paint_down_square
 <LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;paint_up_square
 <LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;paint_right_square
 <LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;paint_left_square

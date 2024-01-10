@@ -2,6 +2,7 @@
 #include "coloring.h"
 
 typedef enum Direction {
+	Nothing,
 	Up,
 	Down,
 	Right,

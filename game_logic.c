@@ -25,7 +25,7 @@ typedef enum Turn {
 	Player2
 } Turn;
 
-Direction token_dir;
+Direction token_dir = Nothing;
 uint8_t board[BOARD_LENGTH][BOARD_LENGTH] = {0};
 Pos_square player1 = {0,3};
 Pos_square player2 = {6,3};
@@ -35,12 +35,14 @@ void paint_left_square(uint8_t board[][BOARD_LENGTH], Pos_square position, uint1
 	if(board[2*position.row][2*position.column-1] == 0) {					// check barrier
 		if(board[2*position.row][2*position.column-2] == 0) {				// check jump over opponent
 			paint_square(position.row, position.column-1, color);			// show if no barrier and no opponent
-			token_dir = Left;
+			if(color == Green)																				// if we are picking a direction, then set the enum to that direction
+				token_dir = Left;
 		} else {																										// opponent is there
 			if(position.column != 1) {																// the opponent is on the border, so you are in the second column
 				if(board[2*position.row][2*position.column-3] == 0) {		// check barrier behind opponent
 					paint_square(position.row, position.column-2, color);
-					token_dir = Left;
+					if(color == Green)
+						token_dir = Left;
 				}
 			}
 		}
@@ -51,12 +53,14 @@ void paint_right_square(uint8_t board[][BOARD_LENGTH], Pos_square position, uint
 	if(board[2*position.row][2*position.column+1] == 0) {
 		if(board[2*position.row][2*position.column+2] == 0) {
 			paint_square(position.row, position.column+1, color);
-			token_dir = Right;
+			if(color == Green)
+				token_dir = Right;
 		} else {
 			if(position.column != NUM_SQUARE_PER_SIDE-1) {
 				if(board[2*position.row][2*position.column+3] == 0) {
 					paint_square(position.row, position.column+2, color);
-					token_dir = Right;
+					if(color == Green)
+						token_dir = Right;
 				}
 			}
 		}
@@ -67,12 +71,14 @@ void paint_up_square(uint8_t board[][BOARD_LENGTH], Pos_square position, uint16_
 	if(board[2*position.row-1][2*position.column] == 0) {
 		if(board[2*position.row-2][2*position.column] == 0) {
 			paint_square(position.row-1, position.column, color);
-			token_dir = Up;
+			if(color == Green)
+				token_dir = Up;
 		} else {
 			if(position.row != 1) {
 				if(board[2*position.row-3][2*position.column] == 0) {
 					paint_square(position.row-2, position.column, color);
-					token_dir = Up;
+					if(color == Green)
+						token_dir = Up;
 				}
 			}
 		}
@@ -83,12 +89,14 @@ void paint_down_square(uint8_t board[][BOARD_LENGTH], Pos_square position, uint1
 	if(board[2*position.row+1][2*position.column] == 0) {
 		if(board[2*position.row+2][2*position.column] == 0) {
 			paint_square(position.row+1, position.column, color);
-			token_dir = Down;
+			if(color == Green)
+				token_dir = Down;
 		} else {
 			if(position.row != NUM_SQUARE_PER_SIDE-1) {
 				if(board[2*position.row+3][2*position.column] == 0) {
 					paint_square(position.row+2, position.column, color);
-					token_dir = Down;
+					if(color == Green)
+						token_dir = Down;
 				}
 			}
 		}
@@ -156,17 +164,17 @@ void update_board_barrier(uint8_t board[][BOARD_LENGTH], Pos_barrier barrier) {
 }
 
 void show_decision_square(Direction dir) {
-	switch(dir) {
+	switch(dir) {			// switch for picking up joystick action
 		case Up:
-			switch(turn) {
+			switch(turn) {	// switch for player turn
 				case Player1:
 					Show_Possible_Moves(board, player1, Yellow);
 					paint_up_square(board, player1, Green);
-				break;
+					break;
 				case Player2:
 					Show_Possible_Moves(board, player2, Yellow);
 					paint_up_square(board, player2, Green);
-				break;
+					break;
 			}
 			break;
 		case Down:
@@ -174,11 +182,11 @@ void show_decision_square(Direction dir) {
 				case Player1:
 					Show_Possible_Moves(board, player1, Yellow);
 					paint_down_square(board, player1, Green);
-				break;
+					break;
 				case Player2:
 					Show_Possible_Moves(board, player2, Yellow);
-				paint_down_square(board, player2, Green);
-				break;
+					paint_down_square(board, player2, Green);
+					break;
 			}
 			break;
 		case Left:
@@ -186,11 +194,11 @@ void show_decision_square(Direction dir) {
 				case Player1:
 					Show_Possible_Moves(board, player1, Yellow);
 					paint_left_square(board, player1, Green);
-				break;
+					break;
 				case Player2:
 					Show_Possible_Moves(board, player2, Yellow);
 					paint_left_square(board, player2, Green);
-				break;
+					break;
 			}
 			break;
 		case Right:
@@ -198,22 +206,80 @@ void show_decision_square(Direction dir) {
 				case Player1:
 					Show_Possible_Moves(board, player1, Yellow);
 					paint_right_square(board, player1, Green);
-				break;
+					break;
 				case Player2:
 					Show_Possible_Moves(board, player2, Yellow);
 					paint_right_square(board, player2, Green);
-				break;
+					break;
 			}
 			break;
 		case Select:
 			switch(turn) {
 				case Player1:
-					turn = Player2;
+					switch(token_dir) {		// switch for checking if a direction has been actually picked before confirming the end of the turn
+						case Up:
+							Show_Possible_Moves(board, player1, White);
+							paint_square(player1.row, player1.column, White);
+							token_dir = Nothing;
+							player1.row -= 1;
+							paint_square(player1.row, player1.column, Blue);
+							timer_value = 20;
+							turn = Player2;
+							break;
+						case Down:
+							Show_Possible_Moves(board, player1, White);
+							paint_square(player1.row, player1.column, White);
+							token_dir = Nothing;
+							player1.row += 1;
+							paint_square(player1.row, player1.column, Blue);
+							timer_value = 20;
+							turn = Player2;
+							break;
+						case Left:
+							Show_Possible_Moves(board, player1, White);
+							paint_square(player1.row, player1.column, White);
+							token_dir = Nothing;
+							player1.column -= 1;
+							paint_square(player1.row, player1.column, Blue);
+							timer_value = 20;
+							turn = Player2;
+							break;
+						case Right:
+							Show_Possible_Moves(board, player1, White);
+							paint_square(player1.row, player1.column, White);
+							token_dir = Nothing;
+							player1.column += 1;
+							paint_square(player1.row, player1.column, Blue);
+							timer_value = 20;
+							turn = Player2;
+							break;
+						default:			// no valid direction picked yet, pressing the joystick does nothing
+							break;
+					}
 					break;
 				case Player2:
+					Show_Possible_Moves(board, player2, White);
+					switch(token_dir) {
+						case Up:
+							
+							break;
+						case Down:
+							
+							break;
+						case Left:
+							
+							break;
+						case Right:
+							
+							break;
+						default:
+							break;
+					}
 					turn = Player1;
 					break;
 			}
+			break;
+		default:
 			break;
 	}
 }
@@ -223,7 +289,7 @@ void Start_Game(void) {
 	Move init_p2 = {6,3,6,3};
 	Pos_barrier bar1 = {1,2,1};
 
-	init_timer(0, 0x00B71B00);
+	init_timer(0, 0x004C4B40);
 	enable_timer(0);
 
 	update_board_player_move(board, init_p1);
