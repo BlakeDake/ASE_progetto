@@ -31,8 +31,9 @@ void RIT_IRQHandler(void) {
 	static int select = 0;
 	static int down = 0;
 	static uint8_t position = 0;
-	down++;
+	
 	if((LPC_GPIO2->FIOPIN & (1<<11)) == 0) {			// debouncing of buttons TODO
+		down++;
 		//reset_RIT();
 		switch(down){
 			case 1:
@@ -58,73 +59,106 @@ void RIT_IRQHandler(void) {
 			js_up++;
 			switch(js_up) {
 				case 1:
-					show_decision_square(Up);
-					break;
-				default:
-					break;
-			}
-		} else {
-				js_up = 0;
-		}
-		
-		if((LPC_GPIO1->FIOPIN & (1<<28)) == 0) {		// 28 = RIGHT
-			js_right++;
-			switch(js_right) {
-				case 1:
-					show_decision_square(Right);
-					break;
-				default:
-					break;
-			}
-		} else {
-				js_right=0;
-		}
-		
-		if((LPC_GPIO1->FIOPIN & (1<<27)) == 0) {		// 27 = LEFT
-			js_left++;
-			switch(js_left){
-				case 1:
-					show_decision_square(Left);
-					break;
-				default:
-					break;
-			}
-		}	else {
-				js_left=0;
-		}
-		
-		if((LPC_GPIO1->FIOPIN & (1<<26)) == 0) {			// 26 = DOWN
-			js_down++;
-			switch(js_down) {
-				case 1:
-					show_decision_square(Down);
-					break;
-				default:
-					break;
-			}
-		}	else {
-				js_down=0;
-		}
-		
-		if((LPC_GPIO1->FIOPIN & (1<<25)) == 0) {		// 25 = SELECT (joystick pressed)
-			select++;
-			switch(select) {
-				case 1:
-					show_decision_square(Select);
-					if(swap) {
-						swap = 0;
-						new_turn();
+					switch(mode) {
+						case Token:
+							show_decision_square(Up);
+							break;
+						case Wall:
+							show_wall_movement(Wall_Up);
+							break;
 					}
 					break;
 				default:
 					break;
 			}
 		} else {
-				select = 0;
+			js_up = 0;
+		}
+		
+		if((LPC_GPIO1->FIOPIN & (1<<28)) == 0) {		// 28 = RIGHT
+			js_right++;
+			switch(js_right) {
+				case 1:
+					switch(mode) {
+						case Token:
+							show_decision_square(Right);
+							break;
+						case Wall:
+							show_wall_movement(Wall_Right);
+							break;
+					}
+					break;
+				default:
+					break;
+			}
+		} else {
+			js_right=0;
+		}
+		
+		if((LPC_GPIO1->FIOPIN & (1<<27)) == 0) {		// 27 = LEFT
+			js_left++;
+			switch(js_left){
+				case 1:
+					switch(mode) {
+						case Token:
+							show_decision_square(Left);
+							break;
+						case Wall:
+							show_wall_movement(Wall_Left);
+							break;
+					}
+					break;
+				default:
+					break;
+			}
+		}	else {
+			js_left=0;
+		}
+		
+		if((LPC_GPIO1->FIOPIN & (1<<26)) == 0) {			// 26 = DOWN
+			js_down++;
+			switch(js_down) {
+				case 1:
+					switch(mode) {
+						case Token:
+							show_decision_square(Down);
+							break;
+						case Wall:
+							show_wall_movement(Wall_Down);
+							break;
+					}
+				default:
+					break;
+			}
+		}	else {
+			js_down=0;
+		}
+
+		if((LPC_GPIO1->FIOPIN & (1<<25)) == 0) {		// 25 = SELECT (joystick pressed)
+			select++;
+			switch(select) {
+				case 1:
+					switch(mode) {
+						case Token:
+							show_decision_square(Select);
+							if(swap) {
+								swap = 0;
+								new_turn();
+							}
+							break;
+						case Wall:
+							show_wall_movement(Wall_Select);
+							break;
+					}
+				default:
+					break;
+			}
+		} else {
+			select = 0;
 		}
 	}
   //LPC_RIT->RICTRL |= 0x1;	/* clear interrupt flag */
-	
+
   return;
 }
 

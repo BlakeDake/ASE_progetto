@@ -32,6 +32,9 @@ uint8_t board[BOARD_LENGTH][BOARD_LENGTH] = {0};
 Pos_square player1 = {0,3};
 Pos_square player2 = {6,3};
 Turn turn = Player1;
+Mode mode = Token;
+Pos_barrier moving_barrier = {2,2,0};
+
 
 void paint_left_square(uint8_t board[][BOARD_LENGTH], Pos_square position, uint16_t color) {
 	if(board[2*position.row][2*position.column-1] == 0) {					// check barrier
@@ -152,11 +155,13 @@ void update_board_barrier(uint8_t board[][BOARD_LENGTH], Pos_barrier barrier) {
 	switch(barrier.direction) {
 		case 0:			// horizontal
 			board[2*barrier.row+1][2*barrier.column] = 1;
+			board[2*barrier.row+1][2*barrier.column+1] = 2;			// 2 signals that the wall is present it is horizontal
 			board[2*barrier.row+1][2*barrier.column+2] = 1;
 			paint_barrier(barrier.row, barrier.column, barrier.direction, Magenta);
 			break;
 		case 1:			// vertical
 			board[2*barrier.row][2*barrier.column+1] = 1;
+			board[2*barrier.row+1][2*barrier.column+1] = 3;		// 3 signals that the wall is present it is vertical
 			board[2*barrier.row+2][2*barrier.column+1] = 1;
 			paint_barrier(barrier.row, barrier.column, barrier.direction, Magenta);
 			break;
@@ -181,14 +186,14 @@ uint8_t check_victory(Turn player_turn) {
 
 void routine_direction_picked(Pos_square* player, Direction dir, Turn player_turn) {
 	Move move;
-	
+
 	move.old_row = player->row;
 	move.old_column = player->column;
-	
+
 	Show_Possible_Moves(board, *player, White);					// get rid of possible moves
 	paint_square(player->row, player->column, White);		// get rid of old position
 	token_dir = Nothing;																// reset direction picked
-	switch(dir) {
+	switch(dir) {					// same calculations as in the paint_dir_square functions to get where you actually move to
 		case Up:
 			if(board[2*player->row-1][2*player->column] == 0) {
 				if(board[2*player->row-2][2*player->column] == 0) {
@@ -269,48 +274,64 @@ void show_decision_square(Direction dir) {
 		case Up:
 			switch(turn) {	// switch for player turn
 				case Player1:
-					Show_Possible_Moves(board, player1, Yellow);
-					paint_up_square(board, player1, Green);
+					if(player1.row != 0) {
+						Show_Possible_Moves(board, player1, Yellow);
+						paint_up_square(board, player1, Green);
+					}
 					break;
 				case Player2:
-					Show_Possible_Moves(board, player2, Yellow);
-					paint_up_square(board, player2, Green);
+					if(player2.row != 0) {
+						Show_Possible_Moves(board, player2, Yellow);
+						paint_up_square(board, player2, Green);
+					}
 					break;
 			}
 			break;
 		case Down:
 			switch(turn) {
 				case Player1:
-					Show_Possible_Moves(board, player1, Yellow);
-					paint_down_square(board, player1, Green);
+					if(player1.row != NUM_SQUARE_PER_SIDE-1) {
+						Show_Possible_Moves(board, player1, Yellow);
+						paint_down_square(board, player1, Green);
+					}
 					break;
 				case Player2:
-					Show_Possible_Moves(board, player2, Yellow);
-					paint_down_square(board, player2, Green);
+					if(player2.row != NUM_SQUARE_PER_SIDE-1) {
+						Show_Possible_Moves(board, player2, Yellow);
+						paint_down_square(board, player2, Green);
+					}
 					break;
 			}
 			break;
 		case Left:
 			switch(turn) {
 				case Player1:
-					Show_Possible_Moves(board, player1, Yellow);
-					paint_left_square(board, player1, Green);
+					if(player1.column != 0) {
+						Show_Possible_Moves(board, player1, Yellow);
+						paint_left_square(board, player1, Green);
+					}
 					break;
 				case Player2:
-					Show_Possible_Moves(board, player2, Yellow);
-					paint_left_square(board, player2, Green);
+					if(player2.column != 0) {
+						Show_Possible_Moves(board, player2, Yellow);
+						paint_left_square(board, player2, Green);
+					}
 					break;
 			}
 			break;
 		case Right:
 			switch(turn) {
 				case Player1:
-					Show_Possible_Moves(board, player1, Yellow);
-					paint_right_square(board, player1, Green);
+					if(player1.column != NUM_SQUARE_PER_SIDE-1) {
+						Show_Possible_Moves(board, player1, Yellow);
+						paint_right_square(board, player1, Green);
+					}
 					break;
 				case Player2:
-					Show_Possible_Moves(board, player2, Yellow);
-					paint_right_square(board, player2, Green);
+					if(player1.column != NUM_SQUARE_PER_SIDE-1) {
+						Show_Possible_Moves(board, player2, Yellow);
+						paint_right_square(board, player2, Green);
+					}
 					break;
 			}
 			break;
@@ -361,7 +382,8 @@ void show_decision_square(Direction dir) {
 }
 
 void new_turn(void) {
-	switch(turn){
+	mode = Token;
+	switch(turn) {
 		case Player1:
 			Show_Possible_Moves(board, player1, Yellow);
 			break;
@@ -371,11 +393,135 @@ void new_turn(void) {
 	}
 }
 
+void show_wall_center(uint8_t board[][BOARD_LENGTH], uint16_t color) {
+	paint_barrier(moving_barrier.row, moving_barrier.column, moving_barrier.direction, color);
+}
+
+void repaint_existing_walls() {
+	switch(board[2*moving_barrier.row+1][2*moving_barrier.column+1]) {
+		case 0:		// no barrier, I simply paint a white barrier with the same direction
+			paint_barrier(moving_barrier.row, moving_barrier.column, moving_barrier.direction, White);
+			break;
+		case 2:		// horizontal barrier, I paint first a vertical white barrier, then the actual barrier
+			paint_barrier(moving_barrier.row, moving_barrier.column, 1, White);
+			paint_barrier(moving_barrier.row, moving_barrier.column, 0, Magenta);
+			break;
+		case 3:		// vertical barrier
+			paint_barrier(moving_barrier.row, moving_barrier.column, 0, White);
+			paint_barrier(moving_barrier.row, moving_barrier.column, 1, Magenta);
+			break;
+		default:
+			break;
+	}
+}
+
+void paint_up_wall(void) {
+	if(moving_barrier.row != 0) {
+		repaint_existing_walls();
+		moving_barrier = moving_barrier;
+		moving_barrier.row -= 1;
+		paint_barrier(moving_barrier.row, moving_barrier.column, moving_barrier.direction, Cyan);
+	}
+}
+
+void paint_down_wall(void) {
+	if(moving_barrier.row != WALL_SLOTS_PER_SIDE-1) {
+		repaint_existing_walls();
+		moving_barrier.row += 1;
+		paint_barrier(moving_barrier.row, moving_barrier.column, moving_barrier.direction, Cyan);
+	}
+}
+
+void paint_right_wall(void) {
+	if(moving_barrier.column != WALL_SLOTS_PER_SIDE-1) {
+		repaint_existing_walls();
+		moving_barrier.column += 1;
+		paint_barrier(moving_barrier.row, moving_barrier.column, moving_barrier.direction, Cyan);
+	}
+}
+
+void paint_left_wall(void) {
+	if(moving_barrier.column != 0) {
+		repaint_existing_walls();
+		moving_barrier.column -= 1;
+		paint_barrier(moving_barrier.row, moving_barrier.column, moving_barrier.direction, Cyan);
+	}
+}
+
+void paint_rotate_wall(void) {
+	switch(moving_barrier.direction) {
+		case 0:		// from horizontal to vertical
+			repaint_existing_walls();
+			moving_barrier.direction = 1;
+			paint_barrier(moving_barrier.row, moving_barrier.column, moving_barrier.direction, Cyan);
+			break;
+		case 1:		// from vertical to horizontal
+			repaint_existing_walls();
+			moving_barrier.direction = 0;
+			paint_barrier(moving_barrier.row, moving_barrier.column, moving_barrier.direction, Cyan);
+			break;
+		default:
+			break;
+	}
+}
+
+void show_wall_movement(Wall_Direction dir) {
+	switch(dir) {
+		case Wall_Up:
+			paint_up_wall();
+			break;
+		case Wall_Down:
+			paint_down_wall();
+			break;
+		case Wall_Left:
+			paint_left_wall();
+			break;
+		case Wall_Right:
+			paint_right_wall();
+			break;
+		case Wall_Select:
+			break;
+		case Wall_Rotate:
+			paint_rotate_wall();
+			break;
+		default:
+			break;
+	}
+}
+
+void routine_mode(void) {
+	switch(mode) {			// old mode
+		case Token:				// going from token to walls
+			switch(turn) {
+				case Player1:
+					Show_Possible_Moves(board, player1, White);
+					show_wall_center(board, Cyan);
+					break;
+				case Player2:
+					Show_Possible_Moves(board, player2, White);
+					break;
+			}
+			mode = Wall;
+			break;
+		case Wall:			// going from walls to token
+			switch(turn) {
+				case Player1:
+					Show_Possible_Moves(board, player1, Yellow);
+					break;
+				case Player2:
+					Show_Possible_Moves(board, player2, Yellow);
+					break;
+			}
+			mode = Token;
+			break;
+	}
+}
+
 void Start_Game(void) {
 	Move init_p1 = {0,3,0,3};
 	Move init_p2 = {6,3,6,3};
 
-	init_timer(0, 0x004C4B40);
+	init_timer(0, 0x017D7840);		// 1 sec irl
 	enable_timer(0);
 
 	update_board_player_move(board, init_p1);
