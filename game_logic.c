@@ -404,12 +404,20 @@ void repaint_existing_walls(Pos_barrier barrier) {
 				}
 				break;
 			case 2:		// horizontal barrier, I paint first a vertical white barrier, then the actual barrier
-				paint_barrier(barrier.row, barrier.column, 1, White);
-				paint_barrier(barrier.row, barrier.column, 0, Magenta);
+				if(barrier.row == moving_barrier.row && barrier.column == moving_barrier.column) {
+					paint_barrier(barrier.row, barrier.column, 1, White);
+					paint_barrier(barrier.row, barrier.column, 0, Magenta);
+				} else {
+					paint_barrier(barrier.row, barrier.column, 0, Magenta);
+				}
 				break;
 			case 3:		// vertical barrier
-				paint_barrier(barrier.row, barrier.column, 0, White);
-				paint_barrier(barrier.row, barrier.column, 1, Magenta);
+				if(barrier.row == moving_barrier.row && barrier.column == moving_barrier.column) {
+					paint_barrier(barrier.row, barrier.column, 0, White);
+					paint_barrier(barrier.row, barrier.column, 1, Magenta);
+				} else {
+					paint_barrier(barrier.row, barrier.column, 1, Magenta);
+				}
 				break;
 			default:
 				break;

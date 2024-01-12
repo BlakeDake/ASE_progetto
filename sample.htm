@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\sample.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\sample.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Fri Jan 12 19:10:18 2024
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Fri Jan 12 19:30:43 2024
 <BR><P>
 <H3>Maximum Stack Usage =        232 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -643,7 +643,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;routine_mode
 </UL>
 
-<P><STRONG><a name="[6a]"></a>repaint_existing_walls</STRONG> (Thumb, 172 bytes, Stack size 8 bytes, game_logic.o(.text))
+<P><STRONG><a name="[6a]"></a>repaint_existing_walls</STRONG> (Thumb, 260 bytes, Stack size 8 bytes, game_logic.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 136<LI>Call Chain = repaint_existing_walls &rArr; paint_barrier &rArr; LCD_DrawLine &rArr; LCD_SetPoint &rArr; LCD_SetCursor
 </UL>
 <BR>[Calls]<UL><LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;paint_barrier
@@ -700,7 +700,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;show_wall_movement
 </UL>
 
-<P><STRONG><a name="[70]"></a>paint_rotate_wall</STRONG> (Thumb, 76 bytes, Stack size 8 bytes, game_logic.o(.text))
+<P><STRONG><a name="[70]"></a>paint_rotate_wall</STRONG> (Thumb, 104 bytes, Stack size 8 bytes, game_logic.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 160<LI>Call Chain = paint_rotate_wall &rArr; repaint_existing_walls_handler &rArr; repaint_existing_walls &rArr; paint_barrier &rArr; LCD_DrawLine &rArr; LCD_SetPoint &rArr; LCD_SetCursor
 </UL>
 <BR>[Calls]<UL><LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;paint_barrier
@@ -709,7 +709,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;show_wall_movement
 </UL>
 
-<P><STRONG><a name="[73]"></a>check_if_wall_is_placeable</STRONG> (Thumb, 292 bytes, Stack size 0 bytes, game_logic.o(.text))
+<P><STRONG><a name="[73]"></a>check_if_wall_is_placeable</STRONG> (Thumb, 262 bytes, Stack size 0 bytes, game_logic.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;show_wall_movement
 </UL>
 
