@@ -141,13 +141,32 @@ void RIT_IRQHandler(void) {
 					switch(mode) {
 						case Token:
 							show_decision_square(Select);
-							if(swap) {
+							if(victory) {
+								disable_timer(0);
+								switch(turn) {
+									case Player1:
+										GUI_Text(SIDE_RECTANGLE_GAP+2,
+														 GRID_BORDER_GAP+(NUM_SQUARE_PER_SIDE*SQUARE_SIDE_LENGTH)+(6*SQUARE_GAP)+10,
+														 "Player1 wins!",
+														 Black,
+														 White);
+										break;
+									case Player2:
+										GUI_Text(SIDE_RECTANGLE_GAP+2,
+														 GRID_BORDER_GAP+(NUM_SQUARE_PER_SIDE*SQUARE_SIDE_LENGTH)+(6*SQUARE_GAP)+10,
+														 "Player2 wins!",
+														 Black,
+														 White);
+										break;
+								}
+							} else if(swap) {
 								swap = 0;
 								new_turn();
 							}
 							break;
 						case Wall:
 							show_wall_movement(Wall_Select);
+							new_turn();
 							break;
 					}
 				default:

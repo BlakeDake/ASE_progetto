@@ -24,8 +24,15 @@ typedef enum Mode {
 	Wall
 } Mode;
 
+typedef enum Turn {
+	Player1,
+	Player2
+} Turn;
+
 extern uint8_t swap;
 extern Mode mode;
+extern uint8_t victory;
+extern Turn turn;
 
 void Start_Game(void);
 void show_decision_square(Direction dir);

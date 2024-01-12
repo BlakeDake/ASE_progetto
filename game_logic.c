@@ -20,10 +20,6 @@ typedef struct move {
 	uint8_t new_column;
 } Move;
 
-typedef enum Turn {
-	Player1,
-	Player2
-} Turn;
 
 uint8_t swap = 0;
 uint8_t victory = 0;
@@ -261,7 +257,7 @@ void routine_direction_picked(Pos_square* player, Direction dir, Turn player_tur
 			paint_square(player->row, player->column, Red);
 			break;
 	}
-	
+
 	timer_value = 20;																	// reset timer for next turn
 	turn = player_turn;																// set new player turn
 	swap = 1;																					// signal new turn
@@ -465,6 +461,18 @@ void paint_rotate_wall(void) {
 	}
 }
 
+uint8_t check_if_wall_is_placeable() {
+	return 1;
+}
+
+void confirm_wall_placement() {
+	paint_barrier(moving_barrier.row, moving_barrier.column, moving_barrier.direction, Magenta);
+	update_board_barrier(board, moving_barrier);
+	moving_barrier.row = 2;
+	moving_barrier.column = 2;
+	moving_barrier.direction = 0;
+}
+
 void show_wall_movement(Wall_Direction dir) {
 	switch(dir) {
 		case Wall_Up:
@@ -480,6 +488,18 @@ void show_wall_movement(Wall_Direction dir) {
 			paint_right_wall();
 			break;
 		case Wall_Select:
+			if(check_if_wall_is_placeable()) {
+				confirm_wall_placement();
+				switch(turn) {
+					case Player1:
+						turn = Player2;
+						break;
+					case Player2:
+						turn = Player1;
+						break;
+				}	
+				timer_value = 20;
+			}
 			break;
 		case Wall_Rotate:
 			paint_rotate_wall();
@@ -487,6 +507,12 @@ void show_wall_movement(Wall_Direction dir) {
 		default:
 			break;
 	}
+}
+
+void reset_moving_barrier() {
+	moving_barrier.row = 2;
+	moving_barrier.column = 2;
+	moving_barrier.direction = 0;
 }
 
 void routine_mode(void) {
@@ -499,6 +525,7 @@ void routine_mode(void) {
 					break;
 				case Player2:
 					Show_Possible_Moves(board, player2, White);
+					show_wall_center(board, Cyan);
 					break;
 			}
 			mode = Wall;
@@ -506,9 +533,13 @@ void routine_mode(void) {
 		case Wall:			// going from walls to token
 			switch(turn) {
 				case Player1:
+					repaint_existing_walls();
+					reset_moving_barrier();
 					Show_Possible_Moves(board, player1, Yellow);
 					break;
 				case Player2:
+					repaint_existing_walls();
+					reset_moving_barrier();
 					Show_Possible_Moves(board, player2, Yellow);
 					break;
 			}
