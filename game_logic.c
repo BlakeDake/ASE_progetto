@@ -30,6 +30,8 @@ Pos_square player2 = {6,3};
 Turn turn = Player1;
 Mode mode = Token;
 Pos_barrier moving_barrier = {2,2,0};
+uint8_t p1_walls = 8;
+uint8_t p2_walls = 8;
 
 
 void paint_left_square(uint8_t board[][BOARD_LENGTH], Pos_square position, uint16_t color) {
@@ -393,27 +395,56 @@ void show_wall_center(uint8_t board[][BOARD_LENGTH], uint16_t color) {
 	paint_barrier(moving_barrier.row, moving_barrier.column, moving_barrier.direction, color);
 }
 
-void repaint_existing_walls() {
-	switch(board[2*moving_barrier.row+1][2*moving_barrier.column+1]) {
-		case 0:		// no barrier, I simply paint a white barrier with the same direction
-			paint_barrier(moving_barrier.row, moving_barrier.column, moving_barrier.direction, White);
-			break;
-		case 2:		// horizontal barrier, I paint first a vertical white barrier, then the actual barrier
-			paint_barrier(moving_barrier.row, moving_barrier.column, 1, White);
-			paint_barrier(moving_barrier.row, moving_barrier.column, 0, Magenta);
-			break;
-		case 3:		// vertical barrier
-			paint_barrier(moving_barrier.row, moving_barrier.column, 0, White);
-			paint_barrier(moving_barrier.row, moving_barrier.column, 1, Magenta);
-			break;
-		default:
-			break;
+void repaint_existing_walls(Pos_barrier barrier) {
+		switch(board[2*barrier.row+1][2*barrier.column+1]) {
+			case 0:		// no barrier, I simply paint a white barrier with the same direction
+				if(barrier.row == moving_barrier.row && barrier.column == moving_barrier.column) {
+					// check if the barrier as param is the same as moving_barrier, this points to if we are painting out the moving barrier or repainting barriers that have been covered
+					paint_barrier(barrier.row, barrier.column, barrier.direction, White);
+				}
+				break;
+			case 2:		// horizontal barrier, I paint first a vertical white barrier, then the actual barrier
+				paint_barrier(barrier.row, barrier.column, 1, White);
+				paint_barrier(barrier.row, barrier.column, 0, Magenta);
+				break;
+			case 3:		// vertical barrier
+				paint_barrier(barrier.row, barrier.column, 0, White);
+				paint_barrier(barrier.row, barrier.column, 1, Magenta);
+				break;
+			default:
+				break;
+		}
+}
+void repaint_existing_walls_handler() {
+	Pos_barrier tmp_barrier = moving_barrier;
+
+	repaint_existing_walls(moving_barrier);										// repaint barriers in the actual position
+
+	if(moving_barrier.row != 0) {
+		tmp_barrier = moving_barrier;
+		tmp_barrier.row -= 1;
+		repaint_existing_walls(tmp_barrier);
+	}
+	if(moving_barrier.row != WALL_SLOTS_PER_SIDE-1) {
+		tmp_barrier = moving_barrier;
+		tmp_barrier.row += 1;
+		repaint_existing_walls(tmp_barrier);
+	}
+	if(moving_barrier.column != 0) {
+		tmp_barrier = moving_barrier;
+		tmp_barrier.column -= 1;
+		repaint_existing_walls(tmp_barrier);
+	}
+	if(moving_barrier.column != WALL_SLOTS_PER_SIDE-1) {
+		tmp_barrier = moving_barrier;
+		tmp_barrier.column += 1;
+		repaint_existing_walls(tmp_barrier);
 	}
 }
 
 void paint_up_wall(void) {
 	if(moving_barrier.row != 0) {
-		repaint_existing_walls();
+		repaint_existing_walls_handler();
 		moving_barrier = moving_barrier;
 		moving_barrier.row -= 1;
 		paint_barrier(moving_barrier.row, moving_barrier.column, moving_barrier.direction, Cyan);
@@ -422,7 +453,7 @@ void paint_up_wall(void) {
 
 void paint_down_wall(void) {
 	if(moving_barrier.row != WALL_SLOTS_PER_SIDE-1) {
-		repaint_existing_walls();
+		repaint_existing_walls_handler();
 		moving_barrier.row += 1;
 		paint_barrier(moving_barrier.row, moving_barrier.column, moving_barrier.direction, Cyan);
 	}
@@ -430,7 +461,7 @@ void paint_down_wall(void) {
 
 void paint_right_wall(void) {
 	if(moving_barrier.column != WALL_SLOTS_PER_SIDE-1) {
-		repaint_existing_walls();
+		repaint_existing_walls_handler();
 		moving_barrier.column += 1;
 		paint_barrier(moving_barrier.row, moving_barrier.column, moving_barrier.direction, Cyan);
 	}
@@ -438,7 +469,7 @@ void paint_right_wall(void) {
 
 void paint_left_wall(void) {
 	if(moving_barrier.column != 0) {
-		repaint_existing_walls();
+		repaint_existing_walls_handler();
 		moving_barrier.column -= 1;
 		paint_barrier(moving_barrier.row, moving_barrier.column, moving_barrier.direction, Cyan);
 	}
@@ -447,12 +478,12 @@ void paint_left_wall(void) {
 void paint_rotate_wall(void) {
 	switch(moving_barrier.direction) {
 		case 0:		// from horizontal to vertical
-			repaint_existing_walls();
+			repaint_existing_walls_handler();
 			moving_barrier.direction = 1;
 			paint_barrier(moving_barrier.row, moving_barrier.column, moving_barrier.direction, Cyan);
 			break;
 		case 1:		// from vertical to horizontal
-			repaint_existing_walls();
+			repaint_existing_walls_handler();
 			moving_barrier.direction = 0;
 			paint_barrier(moving_barrier.row, moving_barrier.column, moving_barrier.direction, Cyan);
 			break;
@@ -462,7 +493,24 @@ void paint_rotate_wall(void) {
 }
 
 uint8_t check_if_wall_is_placeable() {
-	return 1;
+	uint8_t check = 1;
+	switch(moving_barrier.direction) {
+		case 0:			// horizontal
+			if(board[2*moving_barrier.row+1][2*moving_barrier.column+1] != 0) check = 0;					// no barrier at the actual spot
+			if(moving_barrier.column != 0) 																												// no horizontal barrier on the left
+				if(board[2*moving_barrier.row+1][2*moving_barrier.column-1] == 2) check = 0;	
+			if(moving_barrier.column != WALL_SLOTS_PER_SIDE-1) 																		// no horizontal barrier on the right
+				if(board[2*moving_barrier.row+1][2*moving_barrier.column+3] == 2) check = 0;
+			break;
+		case 1:			// vertical
+			if(board[2*moving_barrier.row+1][2*moving_barrier.column+1] != 0) check = 0;					// no barrier at the actual spot
+			if(moving_barrier.column != 0) 																												// no vertical barrier above
+				if(board[2*moving_barrier.row-1][2*moving_barrier.column+1] == 3) check = 0;
+			if(moving_barrier.column != WALL_SLOTS_PER_SIDE-1)  																	// no vertical barrier underneath
+				if(board[2*moving_barrier.row+3][2*moving_barrier.column+1] == 3)	check = 0;
+			break;
+	}
+	return check;
 }
 
 void confirm_wall_placement() {
@@ -473,7 +521,9 @@ void confirm_wall_placement() {
 	moving_barrier.direction = 0;
 }
 
-void show_wall_movement(Wall_Direction dir) {
+uint8_t show_wall_movement(Wall_Direction dir) {
+	char buffer[2];
+
 	switch(dir) {
 		case Wall_Up:
 			paint_up_wall();
@@ -492,13 +542,30 @@ void show_wall_movement(Wall_Direction dir) {
 				confirm_wall_placement();
 				switch(turn) {
 					case Player1:
+						p1_walls--;
+						sprintf(buffer, "%d", p1_walls);
+						GUI_Text(SIDE_RECTANGLE_GAP+2,
+										 GRID_BORDER_GAP+(NUM_SQUARE_PER_SIDE*SQUARE_SIDE_LENGTH)+(6*SQUARE_GAP)+UP_UNDER_RECTANGLE_GAP+2+12,
+										 (uint8_t *)buffer,
+										 Black,
+										 White);
 						turn = Player2;
 						break;
 					case Player2:
+						p2_walls--;
+						sprintf(buffer, "%d", p1_walls);
+						GUI_Text(SIDE_RECTANGLE_GAP+RECTANGLE_HORIZONTAL_SIDE_LENGTH+SIDE_RECTANGLE_GAP+RECTANGLE_HORIZONTAL_SIDE_LENGTH+SIDE_RECTANGLE_GAP+2,
+										 GRID_BORDER_GAP+(NUM_SQUARE_PER_SIDE*SQUARE_SIDE_LENGTH)+(6*SQUARE_GAP)+UP_UNDER_RECTANGLE_GAP+2+12,
+										 (uint8_t *)buffer,
+										 Black,
+										 White);
 						turn = Player1;
 						break;
 				}	
 				timer_value = 20;
+				return 1;
+			} else {
+				return 0;
 			}
 			break;
 		case Wall_Rotate:
@@ -520,12 +587,28 @@ void routine_mode(void) {
 		case Token:				// going from token to walls
 			switch(turn) {
 				case Player1:
-					Show_Possible_Moves(board, player1, White);
-					show_wall_center(board, Cyan);
+					if(p1_walls) {
+						Show_Possible_Moves(board, player1, White);
+						show_wall_center(board, Cyan);
+					} else {
+						GUI_Text(SIDE_RECTANGLE_GAP+2,
+										 GRID_BORDER_GAP+(NUM_SQUARE_PER_SIDE*SQUARE_SIDE_LENGTH)+(6*SQUARE_GAP)+10,
+										 "No more walls!",
+										 Black,
+										 White);
+					}
 					break;
 				case Player2:
-					Show_Possible_Moves(board, player2, White);
-					show_wall_center(board, Cyan);
+					if(p2_walls) {
+						Show_Possible_Moves(board, player2, White);
+						show_wall_center(board, Cyan);
+					} else {
+						GUI_Text(SIDE_RECTANGLE_GAP+2,
+										 GRID_BORDER_GAP+(NUM_SQUARE_PER_SIDE*SQUARE_SIDE_LENGTH)+(6*SQUARE_GAP)+10,
+										 "No more walls!",
+										 Black,
+										 White);
+					}
 					break;
 			}
 			mode = Wall;
@@ -533,12 +616,12 @@ void routine_mode(void) {
 		case Wall:			// going from walls to token
 			switch(turn) {
 				case Player1:
-					repaint_existing_walls();
+					repaint_existing_walls_handler();
 					reset_moving_barrier();
 					Show_Possible_Moves(board, player1, Yellow);
 					break;
 				case Player2:
-					repaint_existing_walls();
+					repaint_existing_walls_handler();
 					reset_moving_barrier();
 					Show_Possible_Moves(board, player2, Yellow);
 					break;

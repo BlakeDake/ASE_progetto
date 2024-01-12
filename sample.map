@@ -24,10 +24,15 @@ Section Cross References
     sample.o(.text) refers to lib_joystick.o(.text) for joystick_init
     sample.o(.text) refers to lib_rit.o(.text) for init_RIT
     init.o(.text) refers to glcd.o(.text) for LCD_DrawLine
+    game_logic.o(.text) refers to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
+    game_logic.o(.text) refers to _printf_d.o(.ARM.Collect$$_printf_percent$$00000009) for _printf_d
+    game_logic.o(.text) refers to _printf_dec.o(.text) for _printf_int_dec
     game_logic.o(.text) refers to coloring.o(.text) for paint_square
     game_logic.o(.text) refers to game_logic.o(.data) for token_dir
     game_logic.o(.text) refers to game_logic.o(.bss) for board
     game_logic.o(.text) refers to irq_timer.o(.data) for timer_value
+    game_logic.o(.text) refers to noretval__2sprintf.o(.text) for __2sprintf
+    game_logic.o(.text) refers to glcd.o(.text) for GUI_Text
     game_logic.o(.text) refers to lib_timer.o(.text) for init_timer
     game_logic.o(.text) refers to game_logic.o(.constdata) for .constdata
     coloring.o(.text) refers to glcd.o(.text) for LCD_DrawLine
@@ -470,54 +475,54 @@ Image Symbol Table
     .ARM.__at_0x02FC                         0x000002fc   Section        4  startup_lpc17xx.o(.ARM.__at_0x02FC)
     .text                                    0x00000300   Section        0  init.o(.text)
     .text                                    0x00000500   Section        0  game_logic.o(.text)
-    .text                                    0x000012e8   Section        0  coloring.o(.text)
-    .text                                    0x00001414   Section        0  system_lpc17xx.o(.text)
-    .text                                    0x00001660   Section        0  lib_timer.o(.text)
-    __NVIC_EnableIRQ                         0x00001661   Thumb Code    34  lib_timer.o(.text)
-    .text                                    0x00001708   Section        0  glcd.o(.text)
-    LCD_Configuration                        0x00001709   Thumb Code    20  glcd.o(.text)
-    wait_delay                               0x0000171d   Thumb Code    12  glcd.o(.text)
-    LCD_SetCursor                            0x00001729   Thumb Code  1356  glcd.o(.text)
-    delay_ms                                 0x00001c75   Thumb Code    30  glcd.o(.text)
-    LCD_BGR2RGB                              0x00005171   Thumb Code    26  glcd.o(.text)
-    .text                                    0x000057ec   Section        0  irq_button.o(.text)
-    .text                                    0x00005878   Section        0  lib_button.o(.text)
-    __NVIC_EnableIRQ                         0x00005879   Thumb Code    34  lib_button.o(.text)
-    .text                                    0x0000590c   Section        0  irq_rit.o(.text)
-    .text                                    0x00005b90   Section        0  lib_rit.o(.text)
-    .text                                    0x00005c50   Section        0  _printf_pad.o(.text)
-    .text                                    0x00005ca0   Section        0  _printf_dec.o(.text)
-    .text                                    0x00005d18   Section        0  __printf_wp.o(.text)
-    .text                                    0x00005e26   Section      138  rt_memcpy_v6.o(.text)
-    .text                                    0x00005eb0   Section        0  _printf_intcommon.o(.text)
-    .text                                    0x00005f64   Section        0  _printf_char_common.o(.text)
-    _printf_input_char                       0x00005f65   Thumb Code    10  _printf_char_common.o(.text)
-    .text                                    0x00005f94   Section      100  rt_memcpy_w.o(.text)
-    .text                                    0x00005ff8   Section       74  sys_stackheap_outer.o(.text)
-    .text                                    0x00006044   Section        0  sys_exit.o(.text)
-    i._is_digit                              0x00006050   Section        0  __printf_wp.o(i._is_digit)
-    .constdata                               0x00006060   Section        8  game_logic.o(.constdata)
-    .constdata                               0x00006068   Section     1520  asciilib.o(.constdata)
-    AsciiLib                                 0x00006068   Data        1520  asciilib.o(.constdata)
+    .text                                    0x00001588   Section        0  coloring.o(.text)
+    .text                                    0x000016b4   Section        0  system_lpc17xx.o(.text)
+    .text                                    0x00001900   Section        0  lib_timer.o(.text)
+    __NVIC_EnableIRQ                         0x00001901   Thumb Code    34  lib_timer.o(.text)
+    .text                                    0x000019a8   Section        0  glcd.o(.text)
+    LCD_Configuration                        0x000019a9   Thumb Code    20  glcd.o(.text)
+    wait_delay                               0x000019bd   Thumb Code    12  glcd.o(.text)
+    LCD_SetCursor                            0x000019c9   Thumb Code  1356  glcd.o(.text)
+    delay_ms                                 0x00001f15   Thumb Code    30  glcd.o(.text)
+    LCD_BGR2RGB                              0x00005411   Thumb Code    26  glcd.o(.text)
+    .text                                    0x00005a8c   Section        0  irq_button.o(.text)
+    .text                                    0x00005b18   Section        0  lib_button.o(.text)
+    __NVIC_EnableIRQ                         0x00005b19   Thumb Code    34  lib_button.o(.text)
+    .text                                    0x00005bac   Section        0  irq_rit.o(.text)
+    .text                                    0x00005e34   Section        0  lib_rit.o(.text)
+    .text                                    0x00005ef4   Section        0  _printf_pad.o(.text)
+    .text                                    0x00005f44   Section        0  _printf_dec.o(.text)
+    .text                                    0x00005fbc   Section        0  __printf_wp.o(.text)
+    .text                                    0x000060ca   Section      138  rt_memcpy_v6.o(.text)
+    .text                                    0x00006154   Section        0  _printf_intcommon.o(.text)
+    .text                                    0x00006208   Section        0  _printf_char_common.o(.text)
+    _printf_input_char                       0x00006209   Thumb Code    10  _printf_char_common.o(.text)
+    .text                                    0x00006238   Section      100  rt_memcpy_w.o(.text)
+    .text                                    0x0000629c   Section       74  sys_stackheap_outer.o(.text)
+    .text                                    0x000062e8   Section        0  sys_exit.o(.text)
+    i._is_digit                              0x000062f4   Section        0  __printf_wp.o(i._is_digit)
+    .constdata                               0x00006304   Section        8  game_logic.o(.constdata)
+    .constdata                               0x0000630c   Section     1520  asciilib.o(.constdata)
+    AsciiLib                                 0x0000630c   Data        1520  asciilib.o(.constdata)
     STACK                                    0x10000000   Section      512  startup_lpc17xx.o(STACK)
     Stack_Mem                                0x10000000   Data         512  startup_lpc17xx.o(STACK)
     __initial_sp                             0x10000200   Data           0  startup_lpc17xx.o(STACK)
-    .data                                    0x2007c000   Section       12  game_logic.o(.data)
-    .data                                    0x2007c00c   Section        5  system_lpc17xx.o(.data)
-    .data                                    0x2007c011   Section        1  irq_timer.o(.data)
-    .data                                    0x2007c012   Section        1  glcd.o(.data)
-    LCD_Code                                 0x2007c012   Data           1  glcd.o(.data)
-    .data                                    0x2007c013   Section        1  irq_button.o(.data)
-    .data                                    0x2007c014   Section       25  irq_rit.o(.data)
-    js_up                                    0x2007c014   Data           4  irq_rit.o(.data)
-    js_down                                  0x2007c018   Data           4  irq_rit.o(.data)
-    js_right                                 0x2007c01c   Data           4  irq_rit.o(.data)
-    js_left                                  0x2007c020   Data           4  irq_rit.o(.data)
-    select                                   0x2007c024   Data           4  irq_rit.o(.data)
-    down                                     0x2007c028   Data           4  irq_rit.o(.data)
-    position                                 0x2007c02c   Data           1  irq_rit.o(.data)
-    .bss                                     0x2007c030   Section      169  game_logic.o(.bss)
-    .bss                                     0x2007c0dc   Section       96  libspace.o(.bss)
+    .data                                    0x2007c000   Section       14  game_logic.o(.data)
+    .data                                    0x2007c010   Section        5  system_lpc17xx.o(.data)
+    .data                                    0x2007c015   Section        1  irq_timer.o(.data)
+    .data                                    0x2007c016   Section        1  glcd.o(.data)
+    LCD_Code                                 0x2007c016   Data           1  glcd.o(.data)
+    .data                                    0x2007c017   Section        1  irq_button.o(.data)
+    .data                                    0x2007c018   Section       25  irq_rit.o(.data)
+    js_up                                    0x2007c018   Data           4  irq_rit.o(.data)
+    js_down                                  0x2007c01c   Data           4  irq_rit.o(.data)
+    js_right                                 0x2007c020   Data           4  irq_rit.o(.data)
+    js_left                                  0x2007c024   Data           4  irq_rit.o(.data)
+    select                                   0x2007c028   Data           4  irq_rit.o(.data)
+    down                                     0x2007c02c   Data           4  irq_rit.o(.data)
+    position                                 0x2007c030   Data           1  irq_rit.o(.data)
+    .bss                                     0x2007c034   Section      169  game_logic.o(.bss)
+    .bss                                     0x2007c0e0   Section       96  libspace.o(.bss)
     HEAP                                     0x2007c140   Section        0  startup_lpc17xx.o(HEAP)
     Heap_Mem                                 0x2007c140   Data           0  startup_lpc17xx.o(HEAP)
 
@@ -690,59 +695,60 @@ Image Symbol Table
     show_decision_square                     0x00000ca3   Thumb Code   668  game_logic.o(.text)
     new_turn                                 0x00000f3f   Thumb Code    64  game_logic.o(.text)
     show_wall_center                         0x00000f7f   Thumb Code    22  game_logic.o(.text)
-    repaint_existing_walls                   0x00000f95   Thumb Code   136  game_logic.o(.text)
-    paint_up_wall                            0x0000101d   Thumb Code    40  game_logic.o(.text)
-    paint_down_wall                          0x00001045   Thumb Code    42  game_logic.o(.text)
-    paint_right_wall                         0x0000106f   Thumb Code    42  game_logic.o(.text)
-    paint_left_wall                          0x00001099   Thumb Code    40  game_logic.o(.text)
-    paint_rotate_wall                        0x000010c1   Thumb Code    76  game_logic.o(.text)
-    check_if_wall_is_placeable               0x0000110d   Thumb Code     4  game_logic.o(.text)
-    confirm_wall_placement                   0x00001111   Thumb Code    54  game_logic.o(.text)
-    show_wall_movement                       0x00001147   Thumb Code   102  game_logic.o(.text)
-    reset_moving_barrier                     0x000011ad   Thumb Code    14  game_logic.o(.text)
-    routine_mode                             0x000011bb   Thumb Code   212  game_logic.o(.text)
-    Start_Game                               0x0000128f   Thumb Code    66  game_logic.o(.text)
-    paint_square                             0x000012e9   Thumb Code   106  coloring.o(.text)
-    paint_barrier                            0x00001353   Thumb Code   194  coloring.o(.text)
-    SystemInit                               0x00001415   Thumb Code   552  system_lpc17xx.o(.text)
-    enable_timer                             0x00001683   Thumb Code    20  lib_timer.o(.text)
-    disable_timer                            0x00001697   Thumb Code    20  lib_timer.o(.text)
-    reset_timer                              0x000016ab   Thumb Code    30  lib_timer.o(.text)
-    init_timer                               0x000016c9   Thumb Code    60  lib_timer.o(.text)
-    LCD_Initialization                       0x00001c93   Thumb Code 12014  glcd.o(.text)
-    LCD_Clear                                0x00004b81   Thumb Code  1520  glcd.o(.text)
-    LCD_GetPoint                             0x0000518b   Thumb Code   994  glcd.o(.text)
-    LCD_SetPoint                             0x0000556d   Thumb Code   206  glcd.o(.text)
-    LCD_DrawLine                             0x0000563b   Thumb Code   250  glcd.o(.text)
-    PutChar                                  0x00005735   Thumb Code   100  glcd.o(.text)
-    GUI_Text                                 0x00005799   Thumb Code    80  glcd.o(.text)
-    EINT0_IRQHandler                         0x000057ed   Thumb Code    40  irq_button.o(.text)
-    EINT1_IRQHandler                         0x00005815   Thumb Code    30  irq_button.o(.text)
-    EINT2_IRQHandler                         0x00005833   Thumb Code    50  irq_button.o(.text)
-    BUTTON_init                              0x0000589b   Thumb Code   100  lib_button.o(.text)
-    RIT_IRQHandler                           0x0000590d   Thumb Code   554  irq_rit.o(.text)
-    enable_RIT                               0x00005b91   Thumb Code    14  lib_rit.o(.text)
-    disable_RIT                              0x00005b9f   Thumb Code    14  lib_rit.o(.text)
-    reset_RIT                                0x00005bad   Thumb Code     8  lib_rit.o(.text)
-    init_RIT                                 0x00005bb5   Thumb Code   134  lib_rit.o(.text)
-    _printf_pre_padding                      0x00005c51   Thumb Code    44  _printf_pad.o(.text)
-    _printf_post_padding                     0x00005c7d   Thumb Code    34  _printf_pad.o(.text)
-    _printf_int_dec                          0x00005ca1   Thumb Code   104  _printf_dec.o(.text)
-    __printf                                 0x00005d19   Thumb Code   270  __printf_wp.o(.text)
-    __aeabi_memcpy                           0x00005e27   Thumb Code     0  rt_memcpy_v6.o(.text)
-    __rt_memcpy                              0x00005e27   Thumb Code   138  rt_memcpy_v6.o(.text)
-    _memcpy_lastbytes                        0x00005e8d   Thumb Code     0  rt_memcpy_v6.o(.text)
-    _printf_int_common                       0x00005eb1   Thumb Code   178  _printf_intcommon.o(.text)
-    _printf_char_common                      0x00005f6f   Thumb Code    32  _printf_char_common.o(.text)
-    __aeabi_memcpy4                          0x00005f95   Thumb Code     0  rt_memcpy_w.o(.text)
-    __aeabi_memcpy8                          0x00005f95   Thumb Code     0  rt_memcpy_w.o(.text)
-    __rt_memcpy_w                            0x00005f95   Thumb Code   100  rt_memcpy_w.o(.text)
-    _memcpy_lastbytes_aligned                0x00005fdd   Thumb Code     0  rt_memcpy_w.o(.text)
-    __user_setup_stackheap                   0x00005ff9   Thumb Code    74  sys_stackheap_outer.o(.text)
-    _sys_exit                                0x00006045   Thumb Code     8  sys_exit.o(.text)
-    _is_digit                                0x00006051   Thumb Code    14  __printf_wp.o(i._is_digit)
-    Region$$Table$$Base                      0x00006658   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x00006688   Number         0  anon$$obj.o(Region$$Table)
+    repaint_existing_walls                   0x00000f95   Thumb Code   172  game_logic.o(.text)
+    repaint_existing_walls_handler           0x00001041   Thumb Code   194  game_logic.o(.text)
+    paint_up_wall                            0x00001103   Thumb Code    40  game_logic.o(.text)
+    paint_down_wall                          0x0000112b   Thumb Code    42  game_logic.o(.text)
+    paint_right_wall                         0x00001155   Thumb Code    42  game_logic.o(.text)
+    paint_left_wall                          0x0000117f   Thumb Code    40  game_logic.o(.text)
+    paint_rotate_wall                        0x000011a7   Thumb Code    76  game_logic.o(.text)
+    check_if_wall_is_placeable               0x000011f3   Thumb Code   292  game_logic.o(.text)
+    confirm_wall_placement                   0x00001317   Thumb Code    54  game_logic.o(.text)
+    show_wall_movement                       0x0000134d   Thumb Code   196  game_logic.o(.text)
+    reset_moving_barrier                     0x00001411   Thumb Code    14  game_logic.o(.text)
+    routine_mode                             0x0000141f   Thumb Code   230  game_logic.o(.text)
+    Start_Game                               0x00001505   Thumb Code    66  game_logic.o(.text)
+    paint_square                             0x00001589   Thumb Code   106  coloring.o(.text)
+    paint_barrier                            0x000015f3   Thumb Code   194  coloring.o(.text)
+    SystemInit                               0x000016b5   Thumb Code   552  system_lpc17xx.o(.text)
+    enable_timer                             0x00001923   Thumb Code    20  lib_timer.o(.text)
+    disable_timer                            0x00001937   Thumb Code    20  lib_timer.o(.text)
+    reset_timer                              0x0000194b   Thumb Code    30  lib_timer.o(.text)
+    init_timer                               0x00001969   Thumb Code    60  lib_timer.o(.text)
+    LCD_Initialization                       0x00001f33   Thumb Code 12014  glcd.o(.text)
+    LCD_Clear                                0x00004e21   Thumb Code  1520  glcd.o(.text)
+    LCD_GetPoint                             0x0000542b   Thumb Code   994  glcd.o(.text)
+    LCD_SetPoint                             0x0000580d   Thumb Code   206  glcd.o(.text)
+    LCD_DrawLine                             0x000058db   Thumb Code   250  glcd.o(.text)
+    PutChar                                  0x000059d5   Thumb Code   100  glcd.o(.text)
+    GUI_Text                                 0x00005a39   Thumb Code    80  glcd.o(.text)
+    EINT0_IRQHandler                         0x00005a8d   Thumb Code    40  irq_button.o(.text)
+    EINT1_IRQHandler                         0x00005ab5   Thumb Code    30  irq_button.o(.text)
+    EINT2_IRQHandler                         0x00005ad3   Thumb Code    50  irq_button.o(.text)
+    BUTTON_init                              0x00005b3b   Thumb Code   100  lib_button.o(.text)
+    RIT_IRQHandler                           0x00005bad   Thumb Code   558  irq_rit.o(.text)
+    enable_RIT                               0x00005e35   Thumb Code    14  lib_rit.o(.text)
+    disable_RIT                              0x00005e43   Thumb Code    14  lib_rit.o(.text)
+    reset_RIT                                0x00005e51   Thumb Code     8  lib_rit.o(.text)
+    init_RIT                                 0x00005e59   Thumb Code   134  lib_rit.o(.text)
+    _printf_pre_padding                      0x00005ef5   Thumb Code    44  _printf_pad.o(.text)
+    _printf_post_padding                     0x00005f21   Thumb Code    34  _printf_pad.o(.text)
+    _printf_int_dec                          0x00005f45   Thumb Code   104  _printf_dec.o(.text)
+    __printf                                 0x00005fbd   Thumb Code   270  __printf_wp.o(.text)
+    __aeabi_memcpy                           0x000060cb   Thumb Code     0  rt_memcpy_v6.o(.text)
+    __rt_memcpy                              0x000060cb   Thumb Code   138  rt_memcpy_v6.o(.text)
+    _memcpy_lastbytes                        0x00006131   Thumb Code     0  rt_memcpy_v6.o(.text)
+    _printf_int_common                       0x00006155   Thumb Code   178  _printf_intcommon.o(.text)
+    _printf_char_common                      0x00006213   Thumb Code    32  _printf_char_common.o(.text)
+    __aeabi_memcpy4                          0x00006239   Thumb Code     0  rt_memcpy_w.o(.text)
+    __aeabi_memcpy8                          0x00006239   Thumb Code     0  rt_memcpy_w.o(.text)
+    __rt_memcpy_w                            0x00006239   Thumb Code   100  rt_memcpy_w.o(.text)
+    _memcpy_lastbytes_aligned                0x00006281   Thumb Code     0  rt_memcpy_w.o(.text)
+    __user_setup_stackheap                   0x0000629d   Thumb Code    74  sys_stackheap_outer.o(.text)
+    _sys_exit                                0x000062e9   Thumb Code     8  sys_exit.o(.text)
+    _is_digit                                0x000062f5   Thumb Code    14  __printf_wp.o(i._is_digit)
+    Region$$Table$$Base                      0x000068fc   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x0000692c   Number         0  anon$$obj.o(Region$$Table)
     swap                                     0x2007c000   Data           1  game_logic.o(.data)
     victory                                  0x2007c001   Data           1  game_logic.o(.data)
     token_dir                                0x2007c002   Data           1  game_logic.o(.data)
@@ -751,13 +757,15 @@ Image Symbol Table
     turn                                     0x2007c007   Data           1  game_logic.o(.data)
     mode                                     0x2007c008   Data           1  game_logic.o(.data)
     moving_barrier                           0x2007c009   Data           3  game_logic.o(.data)
-    SystemFrequency                          0x2007c00c   Data           4  system_lpc17xx.o(.data)
-    ScaleFlag                                0x2007c010   Data           1  system_lpc17xx.o(.data)
-    timer_value                              0x2007c011   Data           1  irq_timer.o(.data)
-    int0                                     0x2007c013   Data           1  irq_button.o(.data)
-    board                                    0x2007c030   Data         169  game_logic.o(.bss)
-    __libspace_start                         0x2007c0dc   Data          96  libspace.o(.bss)
-    __temporary_stack_top$libspace           0x2007c13c   Data           0  libspace.o(.bss)
+    p1_walls                                 0x2007c00c   Data           1  game_logic.o(.data)
+    p2_walls                                 0x2007c00d   Data           1  game_logic.o(.data)
+    SystemFrequency                          0x2007c010   Data           4  system_lpc17xx.o(.data)
+    ScaleFlag                                0x2007c014   Data           1  system_lpc17xx.o(.data)
+    timer_value                              0x2007c015   Data           1  irq_timer.o(.data)
+    int0                                     0x2007c017   Data           1  irq_button.o(.data)
+    board                                    0x2007c034   Data         169  game_logic.o(.bss)
+    __libspace_start                         0x2007c0e0   Data          96  libspace.o(.bss)
+    __temporary_stack_top$libspace           0x2007c140   Data           0  libspace.o(.bss)
 
 
 
@@ -767,129 +775,129 @@ Memory Map of the image
 
   Image Entry point : 0x000000cd
 
-  Load Region LR_IROM1 (Base: 0x00000000, Size: 0x000066b8, Max: 0x00080000, ABSOLUTE)
+  Load Region LR_IROM1 (Base: 0x00000000, Size: 0x00006960, Max: 0x00080000, ABSOLUTE)
 
-    Execution Region ER_IROM1 (Exec base: 0x00000000, Load base: 0x00000000, Size: 0x00006688, Max: 0x00080000, ABSOLUTE)
+    Execution Region ER_IROM1 (Exec base: 0x00000000, Load base: 0x00000000, Size: 0x0000692c, Max: 0x00080000, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
     0x00000000   0x00000000   0x000000cc   Data   RO            3    RESET               startup_lpc17xx.o
-    0x000000cc   0x000000cc   0x00000008   Code   RO          565  * !!!main             c_w.l(__main.o)
-    0x000000d4   0x000000d4   0x00000034   Code   RO          766    !!!scatter          c_w.l(__scatter.o)
-    0x00000108   0x00000108   0x0000001a   Code   RO          768    !!handler_copy      c_w.l(__scatter_copy.o)
+    0x000000cc   0x000000cc   0x00000008   Code   RO          569  * !!!main             c_w.l(__main.o)
+    0x000000d4   0x000000d4   0x00000034   Code   RO          770    !!!scatter          c_w.l(__scatter.o)
+    0x00000108   0x00000108   0x0000001a   Code   RO          772    !!handler_copy      c_w.l(__scatter_copy.o)
     0x00000122   0x00000122   0x00000002   PAD
-    0x00000124   0x00000124   0x0000001c   Code   RO          770    !!handler_zi        c_w.l(__scatter_zi.o)
-    0x00000140   0x00000140   0x00000000   Code   RO          558    .ARM.Collect$$_printf_percent$$00000000  c_w.l(_printf_percent.o)
-    0x00000140   0x00000140   0x00000006   Code   RO          557    .ARM.Collect$$_printf_percent$$00000009  c_w.l(_printf_d.o)
-    0x00000146   0x00000146   0x00000004   Code   RO          598    .ARM.Collect$$_printf_percent$$00000017  c_w.l(_printf_percent_end.o)
-    0x0000014a   0x0000014a   0x00000002   Code   RO          634    .ARM.Collect$$libinit$$00000000  c_w.l(libinit.o)
-    0x0000014c   0x0000014c   0x00000000   Code   RO          641    .ARM.Collect$$libinit$$00000002  c_w.l(libinit2.o)
-    0x0000014c   0x0000014c   0x00000000   Code   RO          643    .ARM.Collect$$libinit$$00000004  c_w.l(libinit2.o)
-    0x0000014c   0x0000014c   0x00000000   Code   RO          646    .ARM.Collect$$libinit$$0000000A  c_w.l(libinit2.o)
-    0x0000014c   0x0000014c   0x00000000   Code   RO          648    .ARM.Collect$$libinit$$0000000C  c_w.l(libinit2.o)
-    0x0000014c   0x0000014c   0x00000000   Code   RO          650    .ARM.Collect$$libinit$$0000000E  c_w.l(libinit2.o)
-    0x0000014c   0x0000014c   0x00000000   Code   RO          653    .ARM.Collect$$libinit$$00000011  c_w.l(libinit2.o)
-    0x0000014c   0x0000014c   0x00000000   Code   RO          655    .ARM.Collect$$libinit$$00000013  c_w.l(libinit2.o)
-    0x0000014c   0x0000014c   0x00000000   Code   RO          657    .ARM.Collect$$libinit$$00000015  c_w.l(libinit2.o)
-    0x0000014c   0x0000014c   0x00000000   Code   RO          659    .ARM.Collect$$libinit$$00000017  c_w.l(libinit2.o)
-    0x0000014c   0x0000014c   0x00000000   Code   RO          661    .ARM.Collect$$libinit$$00000019  c_w.l(libinit2.o)
-    0x0000014c   0x0000014c   0x00000000   Code   RO          663    .ARM.Collect$$libinit$$0000001B  c_w.l(libinit2.o)
-    0x0000014c   0x0000014c   0x00000000   Code   RO          665    .ARM.Collect$$libinit$$0000001D  c_w.l(libinit2.o)
-    0x0000014c   0x0000014c   0x00000000   Code   RO          667    .ARM.Collect$$libinit$$0000001F  c_w.l(libinit2.o)
-    0x0000014c   0x0000014c   0x00000000   Code   RO          669    .ARM.Collect$$libinit$$00000021  c_w.l(libinit2.o)
-    0x0000014c   0x0000014c   0x00000000   Code   RO          671    .ARM.Collect$$libinit$$00000023  c_w.l(libinit2.o)
-    0x0000014c   0x0000014c   0x00000000   Code   RO          673    .ARM.Collect$$libinit$$00000025  c_w.l(libinit2.o)
-    0x0000014c   0x0000014c   0x00000000   Code   RO          677    .ARM.Collect$$libinit$$0000002C  c_w.l(libinit2.o)
-    0x0000014c   0x0000014c   0x00000000   Code   RO          679    .ARM.Collect$$libinit$$0000002E  c_w.l(libinit2.o)
-    0x0000014c   0x0000014c   0x00000000   Code   RO          681    .ARM.Collect$$libinit$$00000030  c_w.l(libinit2.o)
-    0x0000014c   0x0000014c   0x00000000   Code   RO          683    .ARM.Collect$$libinit$$00000032  c_w.l(libinit2.o)
-    0x0000014c   0x0000014c   0x00000002   Code   RO          684    .ARM.Collect$$libinit$$00000033  c_w.l(libinit2.o)
-    0x0000014e   0x0000014e   0x00000002   Code   RO          704    .ARM.Collect$$libshutdown$$00000000  c_w.l(libshutdown.o)
-    0x00000150   0x00000150   0x00000000   Code   RO          717    .ARM.Collect$$libshutdown$$00000002  c_w.l(libshutdown2.o)
-    0x00000150   0x00000150   0x00000000   Code   RO          719    .ARM.Collect$$libshutdown$$00000004  c_w.l(libshutdown2.o)
-    0x00000150   0x00000150   0x00000000   Code   RO          721    .ARM.Collect$$libshutdown$$00000006  c_w.l(libshutdown2.o)
-    0x00000150   0x00000150   0x00000000   Code   RO          724    .ARM.Collect$$libshutdown$$00000009  c_w.l(libshutdown2.o)
-    0x00000150   0x00000150   0x00000000   Code   RO          727    .ARM.Collect$$libshutdown$$0000000C  c_w.l(libshutdown2.o)
-    0x00000150   0x00000150   0x00000000   Code   RO          729    .ARM.Collect$$libshutdown$$0000000E  c_w.l(libshutdown2.o)
-    0x00000150   0x00000150   0x00000000   Code   RO          732    .ARM.Collect$$libshutdown$$00000011  c_w.l(libshutdown2.o)
-    0x00000150   0x00000150   0x00000002   Code   RO          733    .ARM.Collect$$libshutdown$$00000012  c_w.l(libshutdown2.o)
-    0x00000152   0x00000152   0x00000000   Code   RO          591    .ARM.Collect$$rtentry$$00000000  c_w.l(__rtentry.o)
-    0x00000152   0x00000152   0x00000000   Code   RO          609    .ARM.Collect$$rtentry$$00000002  c_w.l(__rtentry2.o)
-    0x00000152   0x00000152   0x00000006   Code   RO          621    .ARM.Collect$$rtentry$$00000004  c_w.l(__rtentry4.o)
-    0x00000158   0x00000158   0x00000000   Code   RO          611    .ARM.Collect$$rtentry$$00000009  c_w.l(__rtentry2.o)
-    0x00000158   0x00000158   0x00000004   Code   RO          612    .ARM.Collect$$rtentry$$0000000A  c_w.l(__rtentry2.o)
-    0x0000015c   0x0000015c   0x00000000   Code   RO          614    .ARM.Collect$$rtentry$$0000000C  c_w.l(__rtentry2.o)
-    0x0000015c   0x0000015c   0x00000008   Code   RO          615    .ARM.Collect$$rtentry$$0000000D  c_w.l(__rtentry2.o)
-    0x00000164   0x00000164   0x00000002   Code   RO          638    .ARM.Collect$$rtexit$$00000000  c_w.l(rtexit.o)
-    0x00000166   0x00000166   0x00000000   Code   RO          686    .ARM.Collect$$rtexit$$00000002  c_w.l(rtexit2.o)
-    0x00000166   0x00000166   0x00000004   Code   RO          687    .ARM.Collect$$rtexit$$00000003  c_w.l(rtexit2.o)
-    0x0000016a   0x0000016a   0x00000006   Code   RO          688    .ARM.Collect$$rtexit$$00000004  c_w.l(rtexit2.o)
+    0x00000124   0x00000124   0x0000001c   Code   RO          774    !!handler_zi        c_w.l(__scatter_zi.o)
+    0x00000140   0x00000140   0x00000000   Code   RO          562    .ARM.Collect$$_printf_percent$$00000000  c_w.l(_printf_percent.o)
+    0x00000140   0x00000140   0x00000006   Code   RO          561    .ARM.Collect$$_printf_percent$$00000009  c_w.l(_printf_d.o)
+    0x00000146   0x00000146   0x00000004   Code   RO          602    .ARM.Collect$$_printf_percent$$00000017  c_w.l(_printf_percent_end.o)
+    0x0000014a   0x0000014a   0x00000002   Code   RO          638    .ARM.Collect$$libinit$$00000000  c_w.l(libinit.o)
+    0x0000014c   0x0000014c   0x00000000   Code   RO          645    .ARM.Collect$$libinit$$00000002  c_w.l(libinit2.o)
+    0x0000014c   0x0000014c   0x00000000   Code   RO          647    .ARM.Collect$$libinit$$00000004  c_w.l(libinit2.o)
+    0x0000014c   0x0000014c   0x00000000   Code   RO          650    .ARM.Collect$$libinit$$0000000A  c_w.l(libinit2.o)
+    0x0000014c   0x0000014c   0x00000000   Code   RO          652    .ARM.Collect$$libinit$$0000000C  c_w.l(libinit2.o)
+    0x0000014c   0x0000014c   0x00000000   Code   RO          654    .ARM.Collect$$libinit$$0000000E  c_w.l(libinit2.o)
+    0x0000014c   0x0000014c   0x00000000   Code   RO          657    .ARM.Collect$$libinit$$00000011  c_w.l(libinit2.o)
+    0x0000014c   0x0000014c   0x00000000   Code   RO          659    .ARM.Collect$$libinit$$00000013  c_w.l(libinit2.o)
+    0x0000014c   0x0000014c   0x00000000   Code   RO          661    .ARM.Collect$$libinit$$00000015  c_w.l(libinit2.o)
+    0x0000014c   0x0000014c   0x00000000   Code   RO          663    .ARM.Collect$$libinit$$00000017  c_w.l(libinit2.o)
+    0x0000014c   0x0000014c   0x00000000   Code   RO          665    .ARM.Collect$$libinit$$00000019  c_w.l(libinit2.o)
+    0x0000014c   0x0000014c   0x00000000   Code   RO          667    .ARM.Collect$$libinit$$0000001B  c_w.l(libinit2.o)
+    0x0000014c   0x0000014c   0x00000000   Code   RO          669    .ARM.Collect$$libinit$$0000001D  c_w.l(libinit2.o)
+    0x0000014c   0x0000014c   0x00000000   Code   RO          671    .ARM.Collect$$libinit$$0000001F  c_w.l(libinit2.o)
+    0x0000014c   0x0000014c   0x00000000   Code   RO          673    .ARM.Collect$$libinit$$00000021  c_w.l(libinit2.o)
+    0x0000014c   0x0000014c   0x00000000   Code   RO          675    .ARM.Collect$$libinit$$00000023  c_w.l(libinit2.o)
+    0x0000014c   0x0000014c   0x00000000   Code   RO          677    .ARM.Collect$$libinit$$00000025  c_w.l(libinit2.o)
+    0x0000014c   0x0000014c   0x00000000   Code   RO          681    .ARM.Collect$$libinit$$0000002C  c_w.l(libinit2.o)
+    0x0000014c   0x0000014c   0x00000000   Code   RO          683    .ARM.Collect$$libinit$$0000002E  c_w.l(libinit2.o)
+    0x0000014c   0x0000014c   0x00000000   Code   RO          685    .ARM.Collect$$libinit$$00000030  c_w.l(libinit2.o)
+    0x0000014c   0x0000014c   0x00000000   Code   RO          687    .ARM.Collect$$libinit$$00000032  c_w.l(libinit2.o)
+    0x0000014c   0x0000014c   0x00000002   Code   RO          688    .ARM.Collect$$libinit$$00000033  c_w.l(libinit2.o)
+    0x0000014e   0x0000014e   0x00000002   Code   RO          708    .ARM.Collect$$libshutdown$$00000000  c_w.l(libshutdown.o)
+    0x00000150   0x00000150   0x00000000   Code   RO          721    .ARM.Collect$$libshutdown$$00000002  c_w.l(libshutdown2.o)
+    0x00000150   0x00000150   0x00000000   Code   RO          723    .ARM.Collect$$libshutdown$$00000004  c_w.l(libshutdown2.o)
+    0x00000150   0x00000150   0x00000000   Code   RO          725    .ARM.Collect$$libshutdown$$00000006  c_w.l(libshutdown2.o)
+    0x00000150   0x00000150   0x00000000   Code   RO          728    .ARM.Collect$$libshutdown$$00000009  c_w.l(libshutdown2.o)
+    0x00000150   0x00000150   0x00000000   Code   RO          731    .ARM.Collect$$libshutdown$$0000000C  c_w.l(libshutdown2.o)
+    0x00000150   0x00000150   0x00000000   Code   RO          733    .ARM.Collect$$libshutdown$$0000000E  c_w.l(libshutdown2.o)
+    0x00000150   0x00000150   0x00000000   Code   RO          736    .ARM.Collect$$libshutdown$$00000011  c_w.l(libshutdown2.o)
+    0x00000150   0x00000150   0x00000002   Code   RO          737    .ARM.Collect$$libshutdown$$00000012  c_w.l(libshutdown2.o)
+    0x00000152   0x00000152   0x00000000   Code   RO          595    .ARM.Collect$$rtentry$$00000000  c_w.l(__rtentry.o)
+    0x00000152   0x00000152   0x00000000   Code   RO          613    .ARM.Collect$$rtentry$$00000002  c_w.l(__rtentry2.o)
+    0x00000152   0x00000152   0x00000006   Code   RO          625    .ARM.Collect$$rtentry$$00000004  c_w.l(__rtentry4.o)
+    0x00000158   0x00000158   0x00000000   Code   RO          615    .ARM.Collect$$rtentry$$00000009  c_w.l(__rtentry2.o)
+    0x00000158   0x00000158   0x00000004   Code   RO          616    .ARM.Collect$$rtentry$$0000000A  c_w.l(__rtentry2.o)
+    0x0000015c   0x0000015c   0x00000000   Code   RO          618    .ARM.Collect$$rtentry$$0000000C  c_w.l(__rtentry2.o)
+    0x0000015c   0x0000015c   0x00000008   Code   RO          619    .ARM.Collect$$rtentry$$0000000D  c_w.l(__rtentry2.o)
+    0x00000164   0x00000164   0x00000002   Code   RO          642    .ARM.Collect$$rtexit$$00000000  c_w.l(rtexit.o)
+    0x00000166   0x00000166   0x00000000   Code   RO          690    .ARM.Collect$$rtexit$$00000002  c_w.l(rtexit2.o)
+    0x00000166   0x00000166   0x00000004   Code   RO          691    .ARM.Collect$$rtexit$$00000003  c_w.l(rtexit2.o)
+    0x0000016a   0x0000016a   0x00000006   Code   RO          692    .ARM.Collect$$rtexit$$00000004  c_w.l(rtexit2.o)
     0x00000170   0x00000170   0x00000034   Code   RO            5    .text               startup_lpc17xx.o
     0x000001a4   0x000001a4   0x00000054   Code   RO           16    .text               sample.o
-    0x000001f8   0x000001f8   0x00000068   Code   RO          204    .text               irq_timer.o
-    0x00000260   0x00000260   0x00000020   Code   RO          286    .text               asciilib.o
-    0x00000280   0x00000280   0x00000024   Code   RO          447    .text               lib_joystick.o
-    0x000002a4   0x000002a4   0x00000028   Code   RO          529    .text               c_w.l(noretval__2sprintf.o)
-    0x000002cc   0x000002cc   0x00000006   Code   RO          563    .text               c_w.l(heapauxi.o)
-    0x000002d2   0x000002d2   0x0000000a   Code   RO          596    .text               c_w.l(_sputc.o)
-    0x000002dc   0x000002dc   0x00000012   Code   RO          627    .text               c_w.l(exit.o)
+    0x000001f8   0x000001f8   0x00000068   Code   RO          208    .text               irq_timer.o
+    0x00000260   0x00000260   0x00000020   Code   RO          290    .text               asciilib.o
+    0x00000280   0x00000280   0x00000024   Code   RO          451    .text               lib_joystick.o
+    0x000002a4   0x000002a4   0x00000028   Code   RO          533    .text               c_w.l(noretval__2sprintf.o)
+    0x000002cc   0x000002cc   0x00000006   Code   RO          567    .text               c_w.l(heapauxi.o)
+    0x000002d2   0x000002d2   0x0000000a   Code   RO          600    .text               c_w.l(_sputc.o)
+    0x000002dc   0x000002dc   0x00000012   Code   RO          631    .text               c_w.l(exit.o)
     0x000002ee   0x000002ee   0x00000002   PAD
-    0x000002f0   0x000002f0   0x00000008   Code   RO          635    .text               c_w.l(libspace.o)
-    0x000002f8   0x000002f8   0x00000002   Code   RO          707    .text               c_w.l(use_no_semi.o)
-    0x000002fa   0x000002fa   0x00000000   Code   RO          709    .text               c_w.l(indicate_semi.o)
+    0x000002f0   0x000002f0   0x00000008   Code   RO          639    .text               c_w.l(libspace.o)
+    0x000002f8   0x000002f8   0x00000002   Code   RO          711    .text               c_w.l(use_no_semi.o)
+    0x000002fa   0x000002fa   0x00000000   Code   RO          713    .text               c_w.l(indicate_semi.o)
     0x000002fa   0x000002fa   0x00000002   PAD
     0x000002fc   0x000002fc   0x00000004   Code   RO            4    .ARM.__at_0x02FC    startup_lpc17xx.o
     0x00000300   0x00000300   0x00000200   Code   RO           84    .text               init.o
-    0x00000500   0x00000500   0x00000de8   Code   RO          108    .text               game_logic.o
-    0x000012e8   0x000012e8   0x0000012c   Code   RO          143    .text               coloring.o
-    0x00001414   0x00001414   0x0000024c   Code   RO          177    .text               system_lpc17xx.o
-    0x00001660   0x00001660   0x000000a8   Code   RO          257    .text               lib_timer.o
-    0x00001708   0x00001708   0x000040e4   Code   RO          306    .text               glcd.o
-    0x000057ec   0x000057ec   0x0000008c   Code   RO          386    .text               irq_button.o
-    0x00005878   0x00005878   0x00000094   Code   RO          420    .text               lib_button.o
-    0x0000590c   0x0000590c   0x00000284   Code   RO          471    .text               irq_rit.o
-    0x00005b90   0x00005b90   0x000000c0   Code   RO          500    .text               lib_rit.o
-    0x00005c50   0x00005c50   0x0000004e   Code   RO          533    .text               c_w.l(_printf_pad.o)
-    0x00005c9e   0x00005c9e   0x00000002   PAD
-    0x00005ca0   0x00005ca0   0x00000078   Code   RO          535    .text               c_w.l(_printf_dec.o)
-    0x00005d18   0x00005d18   0x0000010e   Code   RO          545    .text               c_w.l(__printf_wp.o)
-    0x00005e26   0x00005e26   0x0000008a   Code   RO          559    .text               c_w.l(rt_memcpy_v6.o)
-    0x00005eb0   0x00005eb0   0x000000b2   Code   RO          592    .text               c_w.l(_printf_intcommon.o)
-    0x00005f62   0x00005f62   0x00000002   PAD
-    0x00005f64   0x00005f64   0x00000030   Code   RO          594    .text               c_w.l(_printf_char_common.o)
-    0x00005f94   0x00005f94   0x00000064   Code   RO          599    .text               c_w.l(rt_memcpy_w.o)
-    0x00005ff8   0x00005ff8   0x0000004a   Code   RO          625    .text               c_w.l(sys_stackheap_outer.o)
-    0x00006042   0x00006042   0x00000002   PAD
-    0x00006044   0x00006044   0x0000000c   Code   RO          696    .text               c_w.l(sys_exit.o)
-    0x00006050   0x00006050   0x0000000e   Code   RO          547    i._is_digit         c_w.l(__printf_wp.o)
-    0x0000605e   0x0000605e   0x00000002   PAD
-    0x00006060   0x00006060   0x00000008   Data   RO          110    .constdata          game_logic.o
-    0x00006068   0x00006068   0x000005f0   Data   RO          287    .constdata          asciilib.o
-    0x00006658   0x00006658   0x00000030   Data   RO          764    Region$$Table       anon$$obj.o
+    0x00000500   0x00000500   0x00001088   Code   RO          108    .text               game_logic.o
+    0x00001588   0x00001588   0x0000012c   Code   RO          147    .text               coloring.o
+    0x000016b4   0x000016b4   0x0000024c   Code   RO          181    .text               system_lpc17xx.o
+    0x00001900   0x00001900   0x000000a8   Code   RO          261    .text               lib_timer.o
+    0x000019a8   0x000019a8   0x000040e4   Code   RO          310    .text               glcd.o
+    0x00005a8c   0x00005a8c   0x0000008c   Code   RO          390    .text               irq_button.o
+    0x00005b18   0x00005b18   0x00000094   Code   RO          424    .text               lib_button.o
+    0x00005bac   0x00005bac   0x00000288   Code   RO          475    .text               irq_rit.o
+    0x00005e34   0x00005e34   0x000000c0   Code   RO          504    .text               lib_rit.o
+    0x00005ef4   0x00005ef4   0x0000004e   Code   RO          537    .text               c_w.l(_printf_pad.o)
+    0x00005f42   0x00005f42   0x00000002   PAD
+    0x00005f44   0x00005f44   0x00000078   Code   RO          539    .text               c_w.l(_printf_dec.o)
+    0x00005fbc   0x00005fbc   0x0000010e   Code   RO          549    .text               c_w.l(__printf_wp.o)
+    0x000060ca   0x000060ca   0x0000008a   Code   RO          563    .text               c_w.l(rt_memcpy_v6.o)
+    0x00006154   0x00006154   0x000000b2   Code   RO          596    .text               c_w.l(_printf_intcommon.o)
+    0x00006206   0x00006206   0x00000002   PAD
+    0x00006208   0x00006208   0x00000030   Code   RO          598    .text               c_w.l(_printf_char_common.o)
+    0x00006238   0x00006238   0x00000064   Code   RO          603    .text               c_w.l(rt_memcpy_w.o)
+    0x0000629c   0x0000629c   0x0000004a   Code   RO          629    .text               c_w.l(sys_stackheap_outer.o)
+    0x000062e6   0x000062e6   0x00000002   PAD
+    0x000062e8   0x000062e8   0x0000000c   Code   RO          700    .text               c_w.l(sys_exit.o)
+    0x000062f4   0x000062f4   0x0000000e   Code   RO          551    i._is_digit         c_w.l(__printf_wp.o)
+    0x00006302   0x00006302   0x00000002   PAD
+    0x00006304   0x00006304   0x00000008   Data   RO          110    .constdata          game_logic.o
+    0x0000630c   0x0000630c   0x000005f0   Data   RO          291    .constdata          asciilib.o
+    0x000068fc   0x000068fc   0x00000030   Data   RO          768    Region$$Table       anon$$obj.o
 
 
-    Execution Region RW_IRAM1 (Exec base: 0x10000000, Load base: 0x00006688, Size: 0x00000200, Max: 0x00008000, ABSOLUTE)
+    Execution Region RW_IRAM1 (Exec base: 0x10000000, Load base: 0x0000692c, Size: 0x00000200, Max: 0x00008000, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
     0x10000000        -       0x00000200   Zero   RW            1    STACK               startup_lpc17xx.o
 
 
-    Execution Region RW_IRAM2 (Exec base: 0x2007c000, Load base: 0x00006688, Size: 0x00000140, Max: 0x00008000, ABSOLUTE)
+    Execution Region RW_IRAM2 (Exec base: 0x2007c000, Load base: 0x0000692c, Size: 0x00000140, Max: 0x00008000, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x2007c000   0x00006688   0x0000000c   Data   RW          111    .data               game_logic.o
-    0x2007c00c   0x00006694   0x00000005   Data   RW          178    .data               system_lpc17xx.o
-    0x2007c011   0x00006699   0x00000001   Data   RW          205    .data               irq_timer.o
-    0x2007c012   0x0000669a   0x00000001   Data   RW          307    .data               glcd.o
-    0x2007c013   0x0000669b   0x00000001   Data   RW          387    .data               irq_button.o
-    0x2007c014   0x0000669c   0x00000019   Data   RW          472    .data               irq_rit.o
-    0x2007c02d   0x000066b5   0x00000003   PAD
-    0x2007c030        -       0x000000a9   Zero   RW          109    .bss                game_logic.o
-    0x2007c0d9   0x000066b5   0x00000003   PAD
-    0x2007c0dc        -       0x00000060   Zero   RW          636    .bss                c_w.l(libspace.o)
-    0x2007c13c   0x000066b5   0x00000004   PAD
+    0x2007c000   0x0000692c   0x0000000e   Data   RW          111    .data               game_logic.o
+    0x2007c00e   0x0000693a   0x00000002   PAD
+    0x2007c010   0x0000693c   0x00000005   Data   RW          182    .data               system_lpc17xx.o
+    0x2007c015   0x00006941   0x00000001   Data   RW          209    .data               irq_timer.o
+    0x2007c016   0x00006942   0x00000001   Data   RW          311    .data               glcd.o
+    0x2007c017   0x00006943   0x00000001   Data   RW          391    .data               irq_button.o
+    0x2007c018   0x00006944   0x00000019   Data   RW          476    .data               irq_rit.o
+    0x2007c031   0x0000695d   0x00000003   PAD
+    0x2007c034        -       0x000000a9   Zero   RW          109    .bss                game_logic.o
+    0x2007c0dd   0x0000695d   0x00000003   PAD
+    0x2007c0e0        -       0x00000060   Zero   RW          640    .bss                c_w.l(libspace.o)
     0x2007c140        -       0x00000000   Zero   RW            2    HEAP                startup_lpc17xx.o
 
 
@@ -902,11 +910,11 @@ Image component sizes
 
         32          6       1520          0          0       1135   asciilib.o
        300          0          0          0          0       1273   coloring.o
-      3560        106          8         12        169       7859   game_logic.o
+      4232        142          8         14        169       8536   game_logic.o
      16612        104          0          1          0      40199   glcd.o
        512         24          0          0          0       1753   init.o
        140         20          0          1          0       1363   irq_button.o
-       644         90          0         25          0      27576   irq_rit.o
+       648         90          0         25          0      27620   irq_rit.o
        104         14          0          1          0      17856   irq_timer.o
        148         14          0          0          0        718   lib_button.o
         36         10          0          0          0        448   lib_joystick.o
@@ -917,9 +925,9 @@ Image component sizes
        588         36          0          5          0        977   system_lpc17xx.o
 
     ----------------------------------------------------------------------
-     23176        482       1780         48        684     136299   Object Totals
+     23852        518       1780         52        684     137020   Object Totals
          0          0         48          0          0          0   (incl. Generated)
-         0          0          0          3          3          0   (incl. Padding)
+         0          0          0          5          3          0   (incl. Padding)
 
     ----------------------------------------------------------------------
 
@@ -959,8 +967,8 @@ Image component sizes
          2          0          0          0          0         68   use_no_semi.o
 
     ----------------------------------------------------------------------
-      1292         44          0          0        100       1424   Library Totals
-        14          0          0          0          4          0   (incl. Padding)
+      1292         44          0          0         96       1424   Library Totals
+        14          0          0          0          0          0   (incl. Padding)
 
     ----------------------------------------------------------------------
 
@@ -969,7 +977,7 @@ Image component sizes
       1278         44          0          0         96       1424   c_w.l
 
     ----------------------------------------------------------------------
-      1292         44          0          0        100       1424   Library Totals
+      1292         44          0          0         96       1424   Library Totals
 
     ----------------------------------------------------------------------
 
@@ -978,15 +986,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-     24468        526       1780         48        784     136263   Grand Totals
-     24468        526       1780         48        784     136263   ELF Image Totals
-     24468        526       1780         48          0          0   ROM Totals
+     25144        562       1780         52        780     136932   Grand Totals
+     25144        562       1780         52        780     136932   ELF Image Totals
+     25144        562       1780         52          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                26248 (  25.63kB)
+    Total RO  Size (Code + RO Data)                26924 (  26.29kB)
     Total RW  Size (RW Data + ZI Data)               832 (   0.81kB)
-    Total ROM Size (Code + RO Data + RW Data)      26296 (  25.68kB)
+    Total ROM Size (Code + RO Data + RW Data)      26976 (  26.34kB)
 
 ==============================================================================
 

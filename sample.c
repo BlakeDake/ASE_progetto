@@ -36,8 +36,7 @@ extern uint8_t ScaleFlag; // <- ScaleFlag needs to visible in order for the emul
 #endif
 
 
-int main(void)
-{
+int main(void) {
   SystemInit();  												/* System Initialization (i.e., PLL)  */
   LCD_Initialization();
 	LCD_Clear(White);
@@ -52,8 +51,7 @@ int main(void)
 	LPC_SC->PCON |= 0x1;									/* power-down	mode										*/
 	LPC_SC->PCON &= ~(0x2);						
 	
-  while (1)	
-  {
+  while(1) {
 		__ASM("wfi");
   }
 }

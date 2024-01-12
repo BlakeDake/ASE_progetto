@@ -13,3 +13,4 @@
 .\irq_button.o: coloring.h
 .\irq_button.o: constants.h
 .\irq_button.o: GLCD/GLCD.h
+.\irq_button.o: C:\Keil_v5\ARM\ARMCLANG5\Bin\..\include\stdio.h

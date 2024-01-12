@@ -1,5 +1,6 @@
 #include "timer/timer.h"
 #include "coloring.h"
+#include <stdio.h>
 
 typedef enum Direction {
 	Nothing,
@@ -38,4 +39,4 @@ void Start_Game(void);
 void show_decision_square(Direction dir);
 void new_turn(void);
 void routine_mode(void);
-void show_wall_movement(Wall_Direction dir);
+uint8_t show_wall_movement(Wall_Direction dir);

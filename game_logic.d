@@ -12,3 +12,4 @@
 .\game_logic.o: coloring.h
 .\game_logic.o: constants.h
 .\game_logic.o: GLCD/GLCD.h
+.\game_logic.o: C:\Keil_v5\ARM\ARMCLANG5\Bin\..\include\stdio.h

@@ -1,7 +1,7 @@
 Dependencies for Project 'sample', Target 'Target 1': (DO NOT MODIFY !)
 CompilerVersion: 5060960::V5.06 update 7 (build 960)::.\ARMCLANG5
 F (.\startup_LPC17xx.s)(0x65A00AB6)(--cpu Cortex-M3 --pd "__EVAL SETA 1" -g --apcs=interwork -I.\RTE\_Target_1-IC:\Users\alefe\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IC:\Users\alefe\AppData\Local\Arm\Packs\Keil\LPC1700_DFP\2.7.1\Device\Include--pd "__UVISION_VERSION SETA 538" --pd "_RTE_ SETA 1" --pd "LPC175x_6x SETA 1" --pd "_RTE_ SETA 1"--list .\startup_lpc17xx.lst --xref -o .\startup_lpc17xx.o --depend .\startup_lpc17xx.d)
-F (.\sample.c)(0x659D767C)(-c --cpu Cortex-M3 -D__EVAL -g -O0 --apcs=interwork -I.\RTE\_Target_1-IC:\Users\alefe\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IC:\Users\alefe\AppData\Local\Arm\Packs\Keil\LPC1700_DFP\2.7.1\Device\Include-D__UVISION_VERSION="538" -D_RTE_ -DLPC175x_6x -D_RTE_ -DSIMULATOR-o .\sample.o --omf_browse .\sample.crf --depend .\sample.d)
+F (.\sample.c)(0x65A15BDE)(-c --cpu Cortex-M3 -D__EVAL -g -O0 --apcs=interwork -I.\RTE\_Target_1-IC:\Users\alefe\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IC:\Users\alefe\AppData\Local\Arm\Packs\Keil\LPC1700_DFP\2.7.1\Device\Include-D__UVISION_VERSION="538" -D_RTE_ -DLPC175x_6x -D_RTE_ -DSIMULATOR-o .\sample.o --omf_browse .\sample.crf --depend .\sample.d)
 I (C:\Users\alefe\AppData\Local\Arm\Packs\Keil\LPC1700_DFP\2.7.1\Device\Include\LPC17xx.h)(0x5E1DC4B4)
 I (C:\Users\alefe\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm3.h)(0x626FAD4E)
 I (C:\Keil_v5\ARM\ARMCLANG5\include\stdint.h)(0x5E8E9F32)
@@ -30,8 +30,8 @@ I (C:\Users\alefe\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\mpu
 I (C:\Users\alefe\AppData\Local\Arm\Packs\Keil\LPC1700_DFP\2.7.1\Device\Include\system_LPC17xx.h)(0x58493F92)
 I (constants.h)(0x65A149E2)
 F (.\init.h)(0x65981CCD)()
-F (.\game_logic.c)(0x65A15661)(-c --cpu Cortex-M3 -D__EVAL -g -O0 --apcs=interwork -I.\RTE\_Target_1-IC:\Users\alefe\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IC:\Users\alefe\AppData\Local\Arm\Packs\Keil\LPC1700_DFP\2.7.1\Device\Include-D__UVISION_VERSION="538" -D_RTE_ -DLPC175x_6x -D_RTE_ -DSIMULATOR-o .\game_logic.o --omf_browse .\game_logic.crf --depend .\game_logic.d)
-I (game_logic.h)(0x65A14B65)
+F (.\game_logic.c)(0x65A1807C)(-c --cpu Cortex-M3 -D__EVAL -g -O0 --apcs=interwork -I.\RTE\_Target_1-IC:\Users\alefe\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IC:\Users\alefe\AppData\Local\Arm\Packs\Keil\LPC1700_DFP\2.7.1\Device\Include-D__UVISION_VERSION="538" -D_RTE_ -DLPC175x_6x -D_RTE_ -DSIMULATOR-o .\game_logic.o --omf_browse .\game_logic.crf --depend .\game_logic.d)
+I (game_logic.h)(0x65A15FE0)
 I (timer/timer.h)(0x659D8419)
 I (C:\Users\alefe\AppData\Local\Arm\Packs\Keil\LPC1700_DFP\2.7.1\Device\Include\LPC17xx.h)(0x5E1DC4B4)
 I (C:\Users\alefe\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm3.h)(0x626FAD4E)
@@ -44,8 +44,9 @@ I (C:\Users\alefe\AppData\Local\Arm\Packs\Keil\LPC1700_DFP\2.7.1\Device\Include\
 I (coloring.h)(0x65A14E00)
 I (constants.h)(0x65A149E2)
 I (GLCD/GLCD.h)(0x5E1315E3)
-F (.\game_logic.h)(0x65A14B65)()
-F (.\coloring.c)(0x65A14E73)(-c --cpu Cortex-M3 -D__EVAL -g -O0 --apcs=interwork -I.\RTE\_Target_1-IC:\Users\alefe\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IC:\Users\alefe\AppData\Local\Arm\Packs\Keil\LPC1700_DFP\2.7.1\Device\Include-D__UVISION_VERSION="538" -D_RTE_ -DLPC175x_6x -D_RTE_ -DSIMULATOR-o .\coloring.o --omf_browse .\coloring.crf --depend .\coloring.d)
+I (C:\Keil_v5\ARM\ARMCLANG5\include\stdio.h)(0x5E8E9F32)
+F (.\game_logic.h)(0x65A15FE0)()
+F (.\coloring.c)(0x65A15A9F)(-c --cpu Cortex-M3 -D__EVAL -g -O0 --apcs=interwork -I.\RTE\_Target_1-IC:\Users\alefe\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IC:\Users\alefe\AppData\Local\Arm\Packs\Keil\LPC1700_DFP\2.7.1\Device\Include-D__UVISION_VERSION="538" -D_RTE_ -DLPC175x_6x -D_RTE_ -DSIMULATOR-o .\coloring.o --omf_browse .\coloring.crf --depend .\coloring.d)
 I (coloring.h)(0x65A14E00)
 I (constants.h)(0x65A149E2)
 I (GLCD/GLCD.h)(0x5E1315E3)
@@ -140,11 +141,12 @@ I (C:\Users\alefe\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cms
 I (C:\Users\alefe\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armcc.h)(0x626FAD4E)
 I (C:\Users\alefe\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\mpu_armv7.h)(0x626FAD4E)
 I (C:\Users\alefe\AppData\Local\Arm\Packs\Keil\LPC1700_DFP\2.7.1\Device\Include\system_LPC17xx.h)(0x58493F92)
-I (game_logic.h)(0x65A14B65)
+I (game_logic.h)(0x65A15FE0)
 I (timer/timer.h)(0x659D8419)
 I (coloring.h)(0x65A14E00)
 I (constants.h)(0x65A149E2)
 I (GLCD/GLCD.h)(0x5E1315E3)
+I (C:\Keil_v5\ARM\ARMCLANG5\include\stdio.h)(0x5E8E9F32)
 F (.\lib_button.c)(0x6597DBA8)(-c --cpu Cortex-M3 -D__EVAL -g -O0 --apcs=interwork -I.\RTE\_Target_1-IC:\Users\alefe\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IC:\Users\alefe\AppData\Local\Arm\Packs\Keil\LPC1700_DFP\2.7.1\Device\Include-D__UVISION_VERSION="538" -D_RTE_ -DLPC175x_6x -D_RTE_ -DSIMULATOR-o .\lib_button.o --omf_browse .\lib_button.crf --depend .\lib_button.d)
 I (button.h)(0x65A014DF)
 I (C:\Users\alefe\AppData\Local\Arm\Packs\Keil\LPC1700_DFP\2.7.1\Device\Include\lpc17xx.h)(0x5E1DC4B4)
@@ -167,7 +169,7 @@ I (C:\Users\alefe\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\mpu
 I (C:\Users\alefe\AppData\Local\Arm\Packs\Keil\LPC1700_DFP\2.7.1\Device\Include\system_LPC17xx.h)(0x58493F92)
 I (joystick.h)(0x659D72A6)
 F (.\RIT.h)(0x65A14BBF)()
-F (.\IRQ_RIT.c)(0x65A151E9)(-c --cpu Cortex-M3 -D__EVAL -g -O0 --apcs=interwork -I.\RTE\_Target_1-IC:\Users\alefe\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IC:\Users\alefe\AppData\Local\Arm\Packs\Keil\LPC1700_DFP\2.7.1\Device\Include-D__UVISION_VERSION="538" -D_RTE_ -DLPC175x_6x -D_RTE_ -DSIMULATOR-o .\irq_rit.o --omf_browse .\irq_rit.crf --depend .\irq_rit.d)
+F (.\IRQ_RIT.c)(0x65A1623F)(-c --cpu Cortex-M3 -D__EVAL -g -O0 --apcs=interwork -I.\RTE\_Target_1-IC:\Users\alefe\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IC:\Users\alefe\AppData\Local\Arm\Packs\Keil\LPC1700_DFP\2.7.1\Device\Include-D__UVISION_VERSION="538" -D_RTE_ -DLPC175x_6x -D_RTE_ -DSIMULATOR-o .\irq_rit.o --omf_browse .\irq_rit.crf --depend .\irq_rit.d)
 I (C:\Users\alefe\AppData\Local\Arm\Packs\Keil\LPC1700_DFP\2.7.1\Device\Include\lpc17xx.h)(0x5E1DC4B4)
 I (C:\Users\alefe\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm3.h)(0x626FAD4E)
 I (C:\Keil_v5\ARM\ARMCLANG5\include\stdint.h)(0x5E8E9F32)
@@ -177,11 +179,12 @@ I (C:\Users\alefe\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cms
 I (C:\Users\alefe\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\mpu_armv7.h)(0x626FAD4E)
 I (C:\Users\alefe\AppData\Local\Arm\Packs\Keil\LPC1700_DFP\2.7.1\Device\Include\system_LPC17xx.h)(0x58493F92)
 I (RIT.h)(0x65A14BBF)
-I (game_logic.h)(0x65A14B65)
+I (game_logic.h)(0x65A15FE0)
 I (timer/timer.h)(0x659D8419)
 I (coloring.h)(0x65A14E00)
 I (constants.h)(0x65A149E2)
 I (GLCD/GLCD.h)(0x5E1315E3)
+I (C:\Keil_v5\ARM\ARMCLANG5\include\stdio.h)(0x5E8E9F32)
 I (button.h)(0x65A014DF)
 F (.\lib_RIT.c)(0x659D7350)(-c --cpu Cortex-M3 -D__EVAL -g -O0 --apcs=interwork -I.\RTE\_Target_1-IC:\Users\alefe\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IC:\Users\alefe\AppData\Local\Arm\Packs\Keil\LPC1700_DFP\2.7.1\Device\Include-D__UVISION_VERSION="538" -D_RTE_ -DLPC175x_6x -D_RTE_ -DSIMULATOR-o .\lib_rit.o --omf_browse .\lib_rit.crf --depend .\lib_rit.d)
 I (C:\Users\alefe\AppData\Local\Arm\Packs\Keil\LPC1700_DFP\2.7.1\Device\Include\lpc17xx.h)(0x5E1DC4B4)
