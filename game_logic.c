@@ -1,7 +1,5 @@
 #include "game_logic.h"
 
-#define BOARD_LENGTH 13		// 7 squares + 6 gap for walls
-
 typedef struct position {
 	uint8_t row;
 	uint8_t column;
@@ -32,7 +30,7 @@ Mode mode = Token;
 Pos_barrier moving_barrier = {2,2,0};
 uint8_t p1_walls = 8;
 uint8_t p2_walls = 8;
-
+Graph g;
 
 void paint_left_square(uint8_t board[][BOARD_LENGTH], Pos_square position, uint16_t color) {
 	if(board[2*position.row][2*position.column-1] == 0) {					// check barrier
@@ -500,7 +498,7 @@ void paint_rotate_wall(void) {
 	}
 }
 
-uint8_t check_if_wall_is_placeable() {
+uint8_t check_wall_overlap() {
 	uint8_t check = 1;
 	switch(moving_barrier.direction) {
 		case 0:			// horizontal
@@ -519,6 +517,72 @@ uint8_t check_if_wall_is_placeable() {
 			break;
 	}
 	return check;
+}
+uint8_t check_pathability() {
+	int top_left = moving_barrier.row*NUM_SQUARE_PER_SIDE + moving_barrier.column;
+	int top_right = moving_barrier.row*NUM_SQUARE_PER_SIDE + moving_barrier.column + 1;
+	int bottom_left = (moving_barrier.row+1)*NUM_SQUARE_PER_SIDE + moving_barrier.column;
+	int bottom_right = (moving_barrier.row+1)*NUM_SQUARE_PER_SIDE + moving_barrier.column + 1;
+	uint8_t i;
+	bool flag1 = false;
+	bool flag2 = false;
+
+	int start1 = player1.row*NUM_SQUARE_PER_SIDE + player1.column;
+	int end1 = (NUM_SQUARE_PER_SIDE-1)*NUM_SQUARE_PER_SIDE;
+	int start2 = player2.row*NUM_SQUARE_PER_SIDE + player2.column;
+	int end2 = 0;
+
+	switch(moving_barrier.direction) {		// delete temporarily the two edges
+		case 0:				 // horizontal
+			delete_edge(&g, top_left, bottom_left);
+			delete_edge(&g, top_right, bottom_right);
+
+			for(i = 0; i < NUM_SQUARE_PER_SIDE && flag1 == false && flag2 == false; i++) {
+				if(path_exists(&g, start1, end1+i)) {
+					flag1 = true;
+				}
+				if(path_exists(&g, start2, end2+i)) {
+					flag2 = true;
+				}
+			}
+
+			if(!flag1 || !flag2) {
+				add_edge(&g, top_left, bottom_left);
+				add_edge(&g, top_right, bottom_right);
+			} else {
+				return 1;
+			}
+			break;
+		case 1:					// vertical
+			delete_edge(&g, top_left, top_right);
+			delete_edge(&g, bottom_left, bottom_right);
+
+			for(i = 0; i < NUM_SQUARE_PER_SIDE && flag1 == false && flag2 == false; i++) {
+				if(path_exists(&g, start1, end1+i)) {
+					flag1 = true;
+				}
+				if(path_exists(&g, start2, end2+i)) {
+					flag2 = true;
+				}
+			}
+
+			if(!flag1 || !flag2) {
+				add_edge(&g, top_left, top_right);
+				add_edge(&g, bottom_left, bottom_right);
+			} else {
+				return 1;
+			}
+			break;
+		default:
+			break;
+	}
+	return 0;
+}
+uint8_t check_if_wall_is_placeable() {
+	if(check_wall_overlap()) {
+		return check_pathability();
+	}
+	return 0;
 }
 
 void confirm_wall_placement() {
@@ -639,6 +703,11 @@ void routine_mode(void) {
 	}
 }
 
+void init_graph_routine(void) {
+	init_graph(&g, MAX_NODES);
+	create_board_graph(&g);
+}
+
 void Start_Game(void) {
 	Move init_p1 = {0,3,0,3};
 	Move init_p2 = {6,3,6,3};
@@ -648,6 +717,8 @@ void Start_Game(void) {
 
 	update_board_player_move(board, init_p1);
 	update_board_player_move(board, init_p2);
+	
+	init_graph_routine();
 	
 	Show_Possible_Moves(board, player1, Yellow);
 }

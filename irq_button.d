@@ -14,3 +14,7 @@
 .\irq_button.o: constants.h
 .\irq_button.o: GLCD/GLCD.h
 .\irq_button.o: C:\Keil_v5\ARM\ARMCLANG5\Bin\..\include\stdio.h
+.\irq_button.o: path_finding.h
+.\irq_button.o: constants.h
+.\irq_button.o: C:\Keil_v5\ARM\ARMCLANG5\Bin\..\include\stdlib.h
+.\irq_button.o: C:\Keil_v5\ARM\ARMCLANG5\Bin\..\include\stdbool.h

@@ -1,6 +1,7 @@
 #include "timer/timer.h"
 #include "coloring.h"
 #include <stdio.h>
+#include "path_finding.h"
 
 typedef enum Direction {
 	Nothing,

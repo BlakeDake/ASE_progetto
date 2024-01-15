@@ -4,6 +4,7 @@
 ".\init.o"
 ".\game_logic.o"
 ".\coloring.o"
+".\path_finding.o"
 ".\core_cm3.o"
 ".\system_lpc17xx.o"
 ".\irq_timer.o"

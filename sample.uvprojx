@@ -434,6 +434,16 @@
               <FileType>5</FileType>
               <FilePath>.\constants.h</FilePath>
             </File>
+            <File>
+              <FileName>path_finding.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\path_finding.c</FilePath>
+            </File>
+            <File>
+              <FileName>path_finding.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\path_finding.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
