@@ -258,7 +258,6 @@ void routine_direction_picked(Pos_square* player, Direction dir, Turn player_tur
 			break;
 	}
 
-	timer_value = 20;																	// reset timer for next turn
 	turn = player_turn;																// set new player turn
 	swap = 1;																					// signal new turn
 	
@@ -379,6 +378,7 @@ void show_decision_square(Direction dir) {
 
 void new_turn(void) {
 	mode = Token;
+	timer_value = 20;
 	switch(turn) {
 		case Player1:
 			Show_Possible_Moves(board, player1, Yellow);
@@ -633,8 +633,7 @@ uint8_t show_wall_movement(Wall_Direction dir) {
 										 White);
 						turn = Player1;
 						break;
-				}	
-				timer_value = 20;
+				}
 				return 1;
 			} else {
 				return 0;

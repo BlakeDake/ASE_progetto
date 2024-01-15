@@ -13,3 +13,10 @@
 .\irq_timer.o: timer\../GLCD/GLCD.h
 .\irq_timer.o: timer\../init.h
 .\irq_timer.o: timer\../constants.h
+.\irq_timer.o: timer\../game_logic.h
+.\irq_timer.o: timer\../coloring.h
+.\irq_timer.o: timer\../constants.h
+.\irq_timer.o: timer\../path_finding.h
+.\irq_timer.o: timer\../constants.h
+.\irq_timer.o: C:\Keil_v5\ARM\ARMCLANG5\Bin\..\include\stdlib.h
+.\irq_timer.o: C:\Keil_v5\ARM\ARMCLANG5\Bin\..\include\stdbool.h

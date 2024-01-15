@@ -31,9 +31,7 @@ void RIT_IRQHandler(void) {
 	static int select = 0;
 	static int down = 0;
 	static uint8_t position = 0;
-	
-	uint8_t output; 
-	
+		
 	if((LPC_GPIO2->FIOPIN & (1<<11)) == 0) {			// debouncing of buttons TODO
 		down++;
 		//reset_RIT();
@@ -167,8 +165,7 @@ void RIT_IRQHandler(void) {
 							}
 							break;
 						case Wall:
-							output = show_wall_movement(Wall_Select);
-							if(output) {
+							if(show_wall_movement(Wall_Select)) {		// if the wall is placeable, then swap turn
 								new_turn();
 							}
 							break;

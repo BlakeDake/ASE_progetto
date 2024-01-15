@@ -13,6 +13,7 @@
 #include <stdio.h>
 #include "../GLCD/GLCD.h"
 #include "../init.h"
+#include "../game_logic.h"
 
 /******************************************************************************
 ** Function name:		Timer0_IRQHandler
@@ -39,7 +40,7 @@ void TIMER0_IRQHandler(void) {
 		reset_timer(1);
 		enable_timer(1);
 	} else {
-		disable_timer(1);
+		new_turn();
 	}
 	LPC_TIM0->IR = 1;
 	
