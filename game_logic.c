@@ -522,7 +522,7 @@ uint8_t check_pathability() {
 			delete_edge(&g, top_left, bottom_left);
 			delete_edge(&g, top_right, bottom_right);
 
-			for(i = 0; i < NUM_SQUARE_PER_SIDE && flag1 == false && flag2 == false; i++) {
+			for(i = 0; i < NUM_SQUARE_PER_SIDE && (flag1 == false || flag2 == false); i++) {
 				if(path_exists(&g, start1, end1+i)) {
 					flag1 = true;
 				}
@@ -542,7 +542,7 @@ uint8_t check_pathability() {
 			delete_edge(&g, top_left, top_right);
 			delete_edge(&g, bottom_left, bottom_right);
 
-			for(i = 0; i < NUM_SQUARE_PER_SIDE && flag1 == false && flag2 == false; i++) {
+			for(i = 0; i < NUM_SQUARE_PER_SIDE && (flag1 == false || flag2 == false); i++) {
 				if(path_exists(&g, start1, end1+i)) {
 					flag1 = true;
 				}
