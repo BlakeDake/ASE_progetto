@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\sample.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\sample.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Mon Jan 15 12:17:39 2024
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Mon Jan 15 12:55:24 2024
 <BR><P>
 <H3>Maximum Stack Usage =        224 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -579,8 +579,8 @@ Global Symbols
 <LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;paint_left_square
 </UL>
 <BR>[Called By]<UL><LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Start_Game
-<LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;routine_mode
 <LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;new_turn
+<LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;routine_mode
 <LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;show_decision_square
 <LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;routine_direction_picked
 </UL>
@@ -604,7 +604,7 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;routine_direction_picked
 </UL>
 
-<P><STRONG><a name="[64]"></a>routine_direction_picked</STRONG> (Thumb, 564 bytes, Stack size 24 bytes, game_logic.o(.text))
+<P><STRONG><a name="[64]"></a>routine_direction_picked</STRONG> (Thumb, 560 bytes, Stack size 24 bytes, game_logic.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 200<LI>Call Chain = routine_direction_picked &rArr; Show_Possible_Moves &rArr; paint_down_square &rArr; paint_square &rArr; LCD_DrawLine &rArr; LCD_SetPoint &rArr; LCD_SetCursor
 </UL>
 <BR>[Calls]<UL><LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;paint_square
@@ -615,7 +615,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;show_decision_square
 </UL>
 
-<P><STRONG><a name="[67]"></a>show_decision_square</STRONG> (Thumb, 666 bytes, Stack size 16 bytes, game_logic.o(.text))
+<P><STRONG><a name="[67]"></a>show_decision_square</STRONG> (Thumb, 668 bytes, Stack size 16 bytes, game_logic.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 216<LI>Call Chain = show_decision_square &rArr; routine_direction_picked &rArr; Show_Possible_Moves &rArr; paint_down_square &rArr; paint_square &rArr; LCD_DrawLine &rArr; LCD_SetPoint &rArr; LCD_SetCursor
 </UL>
 <BR>[Calls]<UL><LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;routine_direction_picked
@@ -626,15 +626,6 @@ Global Symbols
 <LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;paint_left_square
 </UL>
 <BR>[Called By]<UL><LI><a href="#[2a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RIT_IRQHandler
-</UL>
-
-<P><STRONG><a name="[51]"></a>new_turn</STRONG> (Thumb, 70 bytes, Stack size 8 bytes, game_logic.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 184<LI>Call Chain = new_turn &rArr; Show_Possible_Moves &rArr; paint_down_square &rArr; paint_square &rArr; LCD_DrawLine &rArr; LCD_SetPoint &rArr; LCD_SetCursor
-</UL>
-<BR>[Calls]<UL><LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Show_Possible_Moves
-</UL>
-<BR>[Called By]<UL><LI><a href="#[2a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RIT_IRQHandler
-<LI><a href="#[e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIMER0_IRQHandler
 </UL>
 
 <P><STRONG><a name="[68]"></a>show_wall_center</STRONG> (Thumb, 22 bytes, Stack size 16 bytes, game_logic.o(.text))
@@ -658,7 +649,8 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[69]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;repaint_existing_walls
 </UL>
-<BR>[Called By]<UL><LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;routine_mode
+<BR>[Called By]<UL><LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;new_turn
+<LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;routine_mode
 <LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;paint_rotate_wall
 <LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;paint_left_wall
 <LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;paint_right_wall
@@ -702,7 +694,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;show_wall_movement
 </UL>
 
-<P><STRONG><a name="[6f]"></a>paint_rotate_wall</STRONG> (Thumb, 110 bytes, Stack size 8 bytes, game_logic.o(.text))
+<P><STRONG><a name="[6f]"></a>paint_rotate_wall</STRONG> (Thumb, 76 bytes, Stack size 8 bytes, game_logic.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 160<LI>Call Chain = paint_rotate_wall &rArr; repaint_existing_walls_handler &rArr; repaint_existing_walls &rArr; paint_barrier &rArr; LCD_DrawLine &rArr; LCD_SetPoint &rArr; LCD_SetCursor
 </UL>
 <BR>[Calls]<UL><LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;paint_barrier
@@ -711,7 +703,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;show_wall_movement
 </UL>
 
-<P><STRONG><a name="[75]"></a>check_wall_overlap</STRONG> (Thumb, 262 bytes, Stack size 0 bytes, game_logic.o(.text))
+<P><STRONG><a name="[75]"></a>check_wall_overlap</STRONG> (Thumb, 288 bytes, Stack size 0 bytes, game_logic.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;check_if_wall_is_placeable
 </UL>
 
@@ -743,7 +735,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;show_wall_movement
 </UL>
 
-<P><STRONG><a name="[77]"></a>show_wall_movement</STRONG> (Thumb, 190 bytes, Stack size 16 bytes, game_logic.o(.text))
+<P><STRONG><a name="[77]"></a>show_wall_movement</STRONG> (Thumb, 178 bytes, Stack size 16 bytes, game_logic.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 176 + Unknown Stack Size
 <LI>Call Chain = show_wall_movement &rArr; paint_rotate_wall &rArr; repaint_existing_walls_handler &rArr; repaint_existing_walls &rArr; paint_barrier &rArr; LCD_DrawLine &rArr; LCD_SetPoint &rArr; LCD_SetCursor
 </UL>
@@ -762,10 +754,11 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[79]"></a>reset_moving_barrier</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, game_logic.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;routine_mode
+<BR><BR>[Called By]<UL><LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;new_turn
+<LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;routine_mode
 </UL>
 
-<P><STRONG><a name="[78]"></a>routine_mode</STRONG> (Thumb, 296 bytes, Stack size 8 bytes, game_logic.o(.text))
+<P><STRONG><a name="[78]"></a>routine_mode</STRONG> (Thumb, 294 bytes, Stack size 8 bytes, game_logic.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 184<LI>Call Chain = routine_mode &rArr; Show_Possible_Moves &rArr; paint_down_square &rArr; paint_square &rArr; LCD_DrawLine &rArr; LCD_SetPoint &rArr; LCD_SetCursor
 </UL>
 <BR>[Calls]<UL><LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;reset_moving_barrier
@@ -775,6 +768,17 @@ Global Symbols
 <LI><a href="#[4e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_Text
 </UL>
 <BR>[Called By]<UL><LI><a href="#[20]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EINT1_IRQHandler
+</UL>
+
+<P><STRONG><a name="[51]"></a>new_turn</STRONG> (Thumb, 126 bytes, Stack size 8 bytes, game_logic.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 184<LI>Call Chain = new_turn &rArr; Show_Possible_Moves &rArr; paint_down_square &rArr; paint_square &rArr; LCD_DrawLine &rArr; LCD_SetPoint &rArr; LCD_SetCursor
+</UL>
+<BR>[Calls]<UL><LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;reset_moving_barrier
+<LI><a href="#[6a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;repaint_existing_walls_handler
+<LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Show_Possible_Moves
+</UL>
+<BR>[Called By]<UL><LI><a href="#[2a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RIT_IRQHandler
+<LI><a href="#[e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIMER0_IRQHandler
 </UL>
 
 <P><STRONG><a name="[7a]"></a>init_graph_routine</STRONG> (Thumb, 18 bytes, Stack size 8 bytes, game_logic.o(.text))
@@ -1000,8 +1004,8 @@ Global Symbols
 <LI>Call Chain = RIT_IRQHandler &rArr; show_decision_square &rArr; routine_direction_picked &rArr; Show_Possible_Moves &rArr; paint_down_square &rArr; paint_square &rArr; LCD_DrawLine &rArr; LCD_SetPoint &rArr; LCD_SetCursor
 </UL>
 <BR>[Calls]<UL><LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;disable_timer
-<LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;show_wall_movement
 <LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;new_turn
+<LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;show_wall_movement
 <LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;show_decision_square
 <LI><a href="#[4e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_Text
 </UL>

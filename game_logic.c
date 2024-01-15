@@ -258,7 +258,6 @@ void routine_direction_picked(Pos_square* player, Direction dir, Turn player_tur
 			break;
 	}
 
-	turn = player_turn;																// set new player turn
 	swap = 1;																					// signal new turn
 	
 	victory = check_victory(player_turn);							// check for victory condition
@@ -376,19 +375,6 @@ void show_decision_square(Direction dir) {
 	}
 }
 
-void new_turn(void) {
-	mode = Token;
-	timer_value = 20;
-	switch(turn) {
-		case Player1:
-			Show_Possible_Moves(board, player1, Yellow);
-			break;
-		case Player2:
-			Show_Possible_Moves(board, player2, Yellow);
-			break;
-	}
-}
-
 void show_wall_center(uint8_t board[][BOARD_LENGTH], uint16_t color) {
 	paint_barrier(moving_barrier.row, moving_barrier.column, moving_barrier.direction, color);
 }
@@ -451,7 +437,6 @@ void repaint_existing_walls_handler() {
 void paint_up_wall(void) {
 	if(moving_barrier.row != 0) {
 		repaint_existing_walls_handler();
-		moving_barrier = moving_barrier;
 		moving_barrier.row -= 1;
 		paint_barrier(moving_barrier.row, moving_barrier.column, moving_barrier.direction, Cyan);
 	}
@@ -621,17 +606,15 @@ uint8_t show_wall_movement(Wall_Direction dir) {
 										 (uint8_t *)buffer,
 										 Black,
 										 White);
-						turn = Player2;
 						break;
 					case Player2:
 						p2_walls--;
-						sprintf(buffer, "%d", p1_walls);
+						sprintf(buffer, "%d", p2_walls);
 						GUI_Text(SIDE_RECTANGLE_GAP+RECTANGLE_HORIZONTAL_SIDE_LENGTH+SIDE_RECTANGLE_GAP+RECTANGLE_HORIZONTAL_SIDE_LENGTH+SIDE_RECTANGLE_GAP+2,
 										 GRID_BORDER_GAP+(NUM_SQUARE_PER_SIDE*SQUARE_SIDE_LENGTH)+(6*SQUARE_GAP)+UP_UNDER_RECTANGLE_GAP+2+12,
 										 (uint8_t *)buffer,
 										 Black,
 										 White);
-						turn = Player1;
 						break;
 				}
 				return 1;
@@ -699,6 +682,25 @@ void routine_mode(void) {
 					break;
 			}
 			mode = Token;
+			break;
+	}
+}
+
+void new_turn(void) {
+	mode = Token;
+	timer_value = 20;
+	repaint_existing_walls_handler();
+	reset_moving_barrier();
+	switch(turn) {
+		case Player1:				// turn pass to Player2
+			Show_Possible_Moves(board, player1, White);
+			turn = Player2;
+			Show_Possible_Moves(board, player2, Yellow);
+			break;
+		case Player2:				// turn pass to Player1
+			Show_Possible_Moves(board, player2, White);
+			turn = Player1;
+			Show_Possible_Moves(board, player1, Yellow);
 			break;
 	}
 }
