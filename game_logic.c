@@ -322,7 +322,7 @@ void show_decision_square(Direction dir) {
 					}
 					break;
 				case Player2:
-					if(player1.column != NUM_SQUARE_PER_SIDE-1) {
+					if(player2.column != NUM_SQUARE_PER_SIDE-1) {
 						Show_Possible_Moves(board, player2, Yellow);
 						paint_right_square(board, player2, Green);
 					}
