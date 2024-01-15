@@ -662,6 +662,7 @@ void routine_mode(void) {
 					if(p1_walls) {
 						Show_Possible_Moves(board, player1, White);
 						show_wall_center(board, Cyan);
+						mode = Wall;
 					} else {
 						GUI_Text(SIDE_RECTANGLE_GAP+2,
 										 GRID_BORDER_GAP+(NUM_SQUARE_PER_SIDE*SQUARE_SIDE_LENGTH)+(6*SQUARE_GAP)+10,
@@ -674,6 +675,7 @@ void routine_mode(void) {
 					if(p2_walls) {
 						Show_Possible_Moves(board, player2, White);
 						show_wall_center(board, Cyan);
+						mode = Wall;
 					} else {
 						GUI_Text(SIDE_RECTANGLE_GAP+2,
 										 GRID_BORDER_GAP+(NUM_SQUARE_PER_SIDE*SQUARE_SIDE_LENGTH)+(6*SQUARE_GAP)+10,
@@ -683,7 +685,6 @@ void routine_mode(void) {
 					}
 					break;
 			}
-			mode = Wall;
 			break;
 		case Wall:			// going from walls to token
 			switch(turn) {

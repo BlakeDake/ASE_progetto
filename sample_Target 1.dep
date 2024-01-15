@@ -1,6 +1,6 @@
 Dependencies for Project 'sample', Target 'Target 1': (DO NOT MODIFY !)
 CompilerVersion: 5060960::V5.06 update 7 (build 960)::.\ARMCLANG5
-F (.\startup_LPC17xx.s)(0x65A415D6)(--cpu Cortex-M3 --pd "__EVAL SETA 1" -g --apcs=interwork -I.\RTE\_Target_1-IC:\Users\alefe\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IC:\Users\alefe\AppData\Local\Arm\Packs\Keil\LPC1700_DFP\2.7.1\Device\Include--pd "__UVISION_VERSION SETA 538" --pd "_RTE_ SETA 1" --pd "LPC175x_6x SETA 1" --pd "_RTE_ SETA 1"--list .\startup_lpc17xx.lst --xref -o .\startup_lpc17xx.o --depend .\startup_lpc17xx.d)
+F (.\startup_LPC17xx.s)(0x65A50A15)(--cpu Cortex-M3 --pd "__EVAL SETA 1" -g --apcs=interwork -I.\RTE\_Target_1-IC:\Users\alefe\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IC:\Users\alefe\AppData\Local\Arm\Packs\Keil\LPC1700_DFP\2.7.1\Device\Include--pd "__UVISION_VERSION SETA 538" --pd "_RTE_ SETA 1" --pd "LPC175x_6x SETA 1" --pd "_RTE_ SETA 1"--list .\startup_lpc17xx.lst --xref -o .\startup_lpc17xx.o --depend .\startup_lpc17xx.d)
 F (.\sample.c)(0x65A15BDE)(-c --cpu Cortex-M3 -D__EVAL -g -O0 --apcs=interwork -I.\RTE\_Target_1-IC:\Users\alefe\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IC:\Users\alefe\AppData\Local\Arm\Packs\Keil\LPC1700_DFP\2.7.1\Device\Include-D__UVISION_VERSION="538" -D_RTE_ -DLPC175x_6x -D_RTE_ -DSIMULATOR-o .\sample.o --omf_browse .\sample.crf --depend .\sample.d)
 I (C:\Users\alefe\AppData\Local\Arm\Packs\Keil\LPC1700_DFP\2.7.1\Device\Include\LPC17xx.h)(0x5E1DC4B4)
 I (C:\Users\alefe\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm3.h)(0x626FAD4E)
@@ -30,7 +30,7 @@ I (C:\Users\alefe\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\mpu
 I (C:\Users\alefe\AppData\Local\Arm\Packs\Keil\LPC1700_DFP\2.7.1\Device\Include\system_LPC17xx.h)(0x58493F92)
 I (constants.h)(0x65A4024B)
 F (.\init.h)(0x65981CCD)()
-F (.\game_logic.c)(0x65A5083E)(-c --cpu Cortex-M3 -D__EVAL -g -O0 --apcs=interwork -I.\RTE\_Target_1-IC:\Users\alefe\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IC:\Users\alefe\AppData\Local\Arm\Packs\Keil\LPC1700_DFP\2.7.1\Device\Include-D__UVISION_VERSION="538" -D_RTE_ -DLPC175x_6x -D_RTE_ -DSIMULATOR-o .\game_logic.o --omf_browse .\game_logic.crf --depend .\game_logic.d)
+F (.\game_logic.c)(0x65A50C21)(-c --cpu Cortex-M3 -D__EVAL -g -O0 --apcs=interwork -I.\RTE\_Target_1-IC:\Users\alefe\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IC:\Users\alefe\AppData\Local\Arm\Packs\Keil\LPC1700_DFP\2.7.1\Device\Include-D__UVISION_VERSION="538" -D_RTE_ -DLPC175x_6x -D_RTE_ -DSIMULATOR-o .\game_logic.o --omf_browse .\game_logic.crf --depend .\game_logic.d)
 I (game_logic.h)(0x65A40166)
 I (timer/timer.h)(0x659D8419)
 I (C:\Users\alefe\AppData\Local\Arm\Packs\Keil\LPC1700_DFP\2.7.1\Device\Include\LPC17xx.h)(0x5E1DC4B4)
