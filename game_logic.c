@@ -747,7 +747,6 @@ void new_turn(New_Turn_Type type) {
 	create_move_handler(type);
 	mode = Token;
 	timer_value = 20;
-	repaint_existing_walls_handler();
 	reset_moving_barrier();
 	switch(turn) {
 		case Player1:				// turn pass to Player2
