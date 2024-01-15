@@ -40,7 +40,7 @@ void TIMER0_IRQHandler(void) {
 		reset_timer(1);
 		enable_timer(1);
 	} else {
-		new_turn();
+		new_turn(No_Time);
 	}
 	LPC_TIM0->IR = 1;
 	

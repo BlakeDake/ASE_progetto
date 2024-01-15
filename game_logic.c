@@ -31,6 +31,7 @@ Pos_barrier moving_barrier = {2,2,0};
 uint8_t p1_walls = 8;
 uint8_t p2_walls = 8;
 Graph g;
+uint32_t move = 0;
 
 void paint_left_square(uint8_t board[][BOARD_LENGTH], Pos_square position, uint16_t color) {
 	if(board[2*position.row][2*position.column-1] == 0) {					// check barrier
@@ -573,9 +574,6 @@ uint8_t check_if_wall_is_placeable() {
 void confirm_wall_placement() {
 	paint_barrier(moving_barrier.row, moving_barrier.column, moving_barrier.direction, Magenta);
 	update_board_barrier(board, moving_barrier);
-	moving_barrier.row = 2;
-	moving_barrier.column = 2;
-	moving_barrier.direction = 0;
 }
 
 uint8_t show_wall_movement(Wall_Direction dir) {
@@ -686,7 +684,67 @@ void routine_mode(void) {
 	}
 }
 
-void new_turn(void) {
+void create_move_variable(uint8_t player_id, uint8_t move_wall, uint8_t ver_hor, uint8_t y, uint8_t x) {
+	move = 0;
+	move = (move & 0x00FFFFFF) | player_id << 24;
+	move = (move & 0xFF0FFFFF) | move_wall << 20;
+	move = (move & 0xFFF0FFFF) | ver_hor << 16;
+	move = (move & 0xFFFF00FF) | y << 8;
+	move = (move & 0xFFFFFF00) | x;
+}
+void create_move_handler(New_Turn_Type type) {
+	switch(type) {
+		case Player:
+			switch(turn) {
+				case Player1:
+					create_move_variable(0, 0, 0, player1.row, player1.column);
+					break;
+				case Player2:
+					create_move_variable(1, 0, 0, player2.row, player2.column);
+					break;
+			}
+			break;
+		case Barrier:
+			switch(moving_barrier.direction) {
+				case 0:			// horizontal
+					switch(turn) {
+						case Player1:
+							create_move_variable(0, 1, 1, moving_barrier.row, moving_barrier.column);
+							break;
+						case Player2:
+							create_move_variable(1, 1, 1, moving_barrier.row, moving_barrier.column);
+							break;
+					}
+					break;
+				case 1:			// vertical
+					switch(turn) {
+						case Player1:
+							create_move_variable(0, 1, 0, moving_barrier.row, moving_barrier.column);
+							break;
+						case Player2:
+							create_move_variable(1, 1, 0, moving_barrier.row, moving_barrier.column);
+							break;
+					}
+					break;
+				default:
+					break;
+			}
+			break;
+		case No_Time:
+			switch(turn) {
+				case Player1:
+					create_move_variable(0, 0, 1, player1.row, player1.column);
+					break;
+				case Player2:
+					create_move_variable(0, 0, 1, player2.row, player2.column);
+					break;
+			}
+			break;
+	}
+}
+
+void new_turn(New_Turn_Type type) {
+	create_move_handler(type);
 	mode = Token;
 	timer_value = 20;
 	repaint_existing_walls_handler();

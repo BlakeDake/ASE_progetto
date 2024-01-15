@@ -161,12 +161,12 @@ void RIT_IRQHandler(void) {
 								}
 							} else if(swap) {
 								swap = 0;
-								new_turn();
+								new_turn(Player);
 							}
 							break;
 						case Wall:
 							if(show_wall_movement(Wall_Select)) {		// if the wall is placeable, then swap turn
-								new_turn();
+								new_turn(Barrier);
 							}
 							break;
 					}

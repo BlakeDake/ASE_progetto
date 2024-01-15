@@ -31,6 +31,12 @@ typedef enum Turn {
 	Player2
 } Turn;
 
+typedef enum New_Turn_Type {
+	Player,
+	Barrier,
+	No_Time
+} New_Turn_Type;
+
 extern uint8_t swap;
 extern Mode mode;
 extern uint8_t victory;
@@ -38,6 +44,6 @@ extern Turn turn;
 
 void Start_Game(void);
 void show_decision_square(Direction dir);
-void new_turn(void);
+void new_turn(New_Turn_Type type);
 void routine_mode(void);
 uint8_t show_wall_movement(Wall_Direction dir);
