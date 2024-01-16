@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\sample.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\sample.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Mon Jan 15 17:31:08 2024
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Tue Jan 16 10:35:23 2024
 <BR><P>
 <H3>Maximum Stack Usage =        224 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -783,12 +783,13 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;new_turn
 </UL>
 
-<P><STRONG><a name="[51]"></a>new_turn</STRONG> (Thumb, 130 bytes, Stack size 16 bytes, game_logic.o(.text))
+<P><STRONG><a name="[51]"></a>new_turn</STRONG> (Thumb, 148 bytes, Stack size 16 bytes, game_logic.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 192<LI>Call Chain = new_turn &rArr; Show_Possible_Moves &rArr; paint_down_square &rArr; paint_square &rArr; LCD_DrawLine &rArr; LCD_SetPoint &rArr; LCD_SetCursor
 </UL>
 <BR>[Calls]<UL><LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;create_move_handler
 <LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;reset_moving_barrier
 <LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Show_Possible_Moves
+<LI><a href="#[4e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_Text
 </UL>
 <BR>[Called By]<UL><LI><a href="#[2a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RIT_IRQHandler
 <LI><a href="#[e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIMER0_IRQHandler
@@ -977,6 +978,7 @@ Global Symbols
 </UL>
 <BR>[Called By]<UL><LI><a href="#[2a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RIT_IRQHandler
 <LI><a href="#[e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIMER0_IRQHandler
+<LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;new_turn
 <LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;routine_mode
 <LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;show_wall_movement
 <LI><a href="#[48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Draw_Start_Screen

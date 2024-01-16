@@ -747,6 +747,11 @@ void new_turn(New_Turn_Type type) {
 	create_move_handler(type);
 	mode = Token;
 	timer_value = 20;
+	GUI_Text(SIDE_RECTANGLE_GAP+2,
+										 GRID_BORDER_GAP+(NUM_SQUARE_PER_SIDE*SQUARE_SIDE_LENGTH)+(6*SQUARE_GAP)+10,
+										 "              ",
+										 Black,
+										 White);
 	reset_moving_barrier();
 	switch(turn) {
 		case Player1:				// turn pass to Player2
