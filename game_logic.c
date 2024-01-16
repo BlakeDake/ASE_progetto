@@ -45,8 +45,16 @@ void paint_left_square(uint8_t board[][BOARD_LENGTH], Pos_square position, uint1
 					paint_square(position.row, position.column-2, color);
 					if(color == Green)
 						token_dir = Left;
+				} else {
+					if(color == Green) {																	// if there is a barrier and that is the direction picked (so the color is green), have token_dir = Nothing because it is not valid
+						token_dir = Nothing;
+					}
 				}
 			}
+		}
+	} else {																											// if there is a barrier and that is the direction picked (so the color is green), have token_dir = Nothing because it is not valid
+		if(color == Green) {
+			token_dir = Nothing;
 		}
 	}
 }
@@ -63,8 +71,16 @@ void paint_right_square(uint8_t board[][BOARD_LENGTH], Pos_square position, uint
 					paint_square(position.row, position.column+2, color);
 					if(color == Green)
 						token_dir = Right;
+				} else {
+					if(color == Green) {																	// if there is a barrier and that is the direction picked (so the color is green), have token_dir = Nothing because it is not valid
+						token_dir = Nothing;
+					}
 				}
 			}
+		}
+	} else {																											// if there is a barrier and that is the direction picked (so the color is green), have token_dir = Nothing because it is not valid
+		if(color == Green) {
+			token_dir = Nothing;
 		}
 	}
 }
@@ -81,8 +97,16 @@ void paint_up_square(uint8_t board[][BOARD_LENGTH], Pos_square position, uint16_
 					paint_square(position.row-2, position.column, color);
 					if(color == Green)
 						token_dir = Up;
+				} else {
+					if(color == Green) {
+						token_dir = Nothing;
+					}
 				}
 			}
+		}
+	} else {
+		if(color == Green) {
+			token_dir = Nothing;
 		}
 	}
 }
@@ -99,8 +123,16 @@ void paint_down_square(uint8_t board[][BOARD_LENGTH], Pos_square position, uint1
 					paint_square(position.row+2, position.column, color);
 					if(color == Green)
 						token_dir = Down;
+				} else {
+					if(color == Green) {
+						token_dir = Nothing;
+					}
 				}
 			}
+		}
+	} else {
+		if(color == Green) {
+			token_dir = Nothing;
 		}
 	}
 }
@@ -351,7 +383,6 @@ void show_decision_square(Direction dir) {
 					}
 					break;
 				case Player2:
-					Show_Possible_Moves(board, player2, White);
 					switch(token_dir) {
 						case Up:
 							routine_direction_picked(&player2, Up, Player1);

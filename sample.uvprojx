@@ -517,21 +517,6 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>TP</GroupName>
-          <Files>
-            <File>
-              <FileName>TouchPanel.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\TouchPanel\TouchPanel.c</FilePath>
-            </File>
-            <File>
-              <FileName>TouchPanel.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\TouchPanel\TouchPanel.h</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
           <GroupName>button_EINT</GroupName>
           <Files>
             <File>

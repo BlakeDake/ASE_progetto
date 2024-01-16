@@ -236,31 +236,7 @@ void RIT_IRQHandler(void) {
 	static int js_right = 0;
 	static int js_left = 0;
 	static int select = 0;
-	static int down = 0;
-	static uint8_t position = 0;
-		
-	if((LPC_GPIO2->FIOPIN & (1<<11)) == 0) {			// debouncing of buttons TODO
-		down++;
-		//reset_RIT();
-		switch(down){
-			case 1:
-				if( position == 7){
-					position = 0;
-				}
-				else{
 
-				}
-				break;
-			default:
-				break;
-		}
-	} else {	/* button released */
-		down=0;			
-		//disable_RIT();
-		//reset_RIT();
-		NVIC_EnableIRQ(EINT1_IRQn);							 /* disable Button interrupts			*/
-		LPC_PINCON->PINSEL4    |= (1 << 22);     /* External interrupt 0 pin selection */
-	}
 	if(int0 == Pressed) {
 		if((LPC_GPIO1->FIOPIN & (1<<29)) == 0) {		// 29 = UP
 			js_up++;
@@ -281,7 +257,7 @@ void RIT_IRQHandler(void) {
 		} else {
 			js_up = 0;
 		}
-		
+
 		if((LPC_GPIO1->FIOPIN & (1<<28)) == 0) {		// 28 = RIGHT
 			js_right++;
 			switch(js_right) {
@@ -301,7 +277,7 @@ void RIT_IRQHandler(void) {
 		} else {
 			js_right=0;
 		}
-		
+
 		if((LPC_GPIO1->FIOPIN & (1<<27)) == 0) {		// 27 = LEFT
 			js_left++;
 			switch(js_left){
@@ -321,7 +297,7 @@ void RIT_IRQHandler(void) {
 		}	else {
 			js_left=0;
 		}
-		
+
 		if((LPC_GPIO1->FIOPIN & (1<<26)) == 0) {			// 26 = DOWN
 			js_down++;
 			switch(js_down) {
@@ -384,11 +360,6 @@ void RIT_IRQHandler(void) {
 			select = 0;
 		}
 	}
-	
-	// no built-in debouncing from the emulator, no use for these
-	//reset_RIT();
-  //LPC_RIT->RICTRL |= 0x1;	/* clear interrupt flag */
-
   return;
 }
 

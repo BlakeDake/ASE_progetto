@@ -12,7 +12,6 @@
 ".\asciilib.o"
 ".\glcd.o"
 ".\hzlib.o"
-".\touchpanel.o"
 ".\irq_button.o"
 ".\lib_button.o"
 ".\lib_joystick.o"
