@@ -799,6 +799,7 @@ void new_turn(New_Turn_Type type) {
 										 "              ",
 										 Black,
 										 White);
+	repaint_existing_walls_handler();
 	reset_moving_barrier();
 	switch(turn) {
 		case Player1:				// turn pass to Player2
