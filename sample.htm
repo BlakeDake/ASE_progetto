@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\sample.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\sample.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Tue Jan 16 14:22:05 2024
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Tue Jan 16 16:03:54 2024
 <BR><P>
 <H3>Maximum Stack Usage =        224 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -615,7 +615,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;show_decision_square
 </UL>
 
-<P><STRONG><a name="[67]"></a>show_decision_square</STRONG> (Thumb, 650 bytes, Stack size 16 bytes, game_logic.o(.text))
+<P><STRONG><a name="[67]"></a>show_decision_square</STRONG> (Thumb, 716 bytes, Stack size 16 bytes, game_logic.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 216<LI>Call Chain = show_decision_square &rArr; routine_direction_picked &rArr; Show_Possible_Moves &rArr; paint_down_square &rArr; paint_square &rArr; LCD_DrawLine &rArr; LCD_SetPoint &rArr; LCD_SetCursor
 </UL>
 <BR>[Calls]<UL><LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;routine_direction_picked
@@ -757,7 +757,7 @@ Global Symbols
 <LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;routine_mode
 </UL>
 
-<P><STRONG><a name="[78]"></a>routine_mode</STRONG> (Thumb, 236 bytes, Stack size 8 bytes, game_logic.o(.text))
+<P><STRONG><a name="[78]"></a>routine_mode</STRONG> (Thumb, 292 bytes, Stack size 8 bytes, game_logic.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 184<LI>Call Chain = routine_mode &rArr; Show_Possible_Moves &rArr; paint_down_square &rArr; paint_square &rArr; LCD_DrawLine &rArr; LCD_SetPoint &rArr; LCD_SetCursor
 </UL>
 <BR>[Calls]<UL><LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;reset_moving_barrier
@@ -769,7 +769,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[20]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EINT1_IRQHandler
 </UL>
 
-<P><STRONG><a name="[7b]"></a>create_move_variable</STRONG> (Thumb, 138 bytes, Stack size 16 bytes, game_logic.o(.text))
+<P><STRONG><a name="[7b]"></a>create_move_variable</STRONG> (Thumb, 76 bytes, Stack size 16 bytes, game_logic.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = create_move_variable
 </UL>
 <BR>[Called By]<UL><LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;create_move_handler

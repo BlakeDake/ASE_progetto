@@ -301,15 +301,19 @@ void show_decision_square(Direction dir) {
 		case Up:
 			switch(turn) {	// switch for player turn
 				case Player1:
+					Show_Possible_Moves(board, player1, Yellow);
 					if(player1.row != 0) {
-						Show_Possible_Moves(board, player1, Yellow);
 						paint_up_square(board, player1, Green);
+					} else {
+						token_dir = Nothing;
 					}
 					break;
 				case Player2:
+					Show_Possible_Moves(board, player2, Yellow);
 					if(player2.row != 0) {
-						Show_Possible_Moves(board, player2, Yellow);
 						paint_up_square(board, player2, Green);
+					} else {
+						token_dir = Nothing;
 					}
 					break;
 			}
@@ -317,15 +321,19 @@ void show_decision_square(Direction dir) {
 		case Down:
 			switch(turn) {
 				case Player1:
+					Show_Possible_Moves(board, player1, Yellow);
 					if(player1.row != NUM_SQUARE_PER_SIDE-1) {
-						Show_Possible_Moves(board, player1, Yellow);
 						paint_down_square(board, player1, Green);
+					} else {
+						token_dir = Nothing;
 					}
 					break;
 				case Player2:
+					Show_Possible_Moves(board, player2, Yellow);
 					if(player2.row != NUM_SQUARE_PER_SIDE-1) {
-						Show_Possible_Moves(board, player2, Yellow);
 						paint_down_square(board, player2, Green);
+					} else {
+						token_dir = Nothing;
 					}
 					break;
 			}
@@ -333,15 +341,19 @@ void show_decision_square(Direction dir) {
 		case Left:
 			switch(turn) {
 				case Player1:
+					Show_Possible_Moves(board, player1, Yellow);
 					if(player1.column != 0) {
-						Show_Possible_Moves(board, player1, Yellow);
 						paint_left_square(board, player1, Green);
+					} else {
+						token_dir = Nothing;
 					}
 					break;
 				case Player2:
+					Show_Possible_Moves(board, player2, Yellow);
 					if(player2.column != 0) {
-						Show_Possible_Moves(board, player2, Yellow);
 						paint_left_square(board, player2, Green);
+					} else {
+						token_dir = Nothing;
 					}
 					break;
 			}
@@ -349,15 +361,19 @@ void show_decision_square(Direction dir) {
 		case Right:
 			switch(turn) {
 				case Player1:
+					Show_Possible_Moves(board, player1, Yellow);
 					if(player1.column != NUM_SQUARE_PER_SIDE-1) {
-						Show_Possible_Moves(board, player1, Yellow);
 						paint_right_square(board, player1, Green);
+					} else {
+						token_dir = Nothing;
 					}
 					break;
 				case Player2:
+					Show_Possible_Moves(board, player2, Yellow);
 					if(player2.column != NUM_SQUARE_PER_SIDE-1) {
-						Show_Possible_Moves(board, player2, Yellow);
 						paint_right_square(board, player2, Green);
+					} else {
+						token_dir = Nothing;
 					}
 					break;
 			}
