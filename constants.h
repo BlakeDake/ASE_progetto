@@ -9,3 +9,4 @@
 #define WALL_SLOTS_PER_SIDE 6
 #define BOARD_LENGTH 13		// 7 squares + 6 gap for walls
 #define MAX_NODES NUM_SQUARE_PER_SIDE*NUM_SQUARE_PER_SIDE
+#define COMPILE_DEBOUNCING 0	// 0 no debouncing software, 1 debouncing software 
